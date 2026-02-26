@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17cdcc1421e281849a8e5d9d8d197972
+guid: 997ad66edb64bef44823ddc9199935fc
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Object_5424Mat
-    second: {fileID: 2100000, guid: 22ce7cb168a9a7d48a3d3146967673ab, type: 2}
+      name: Tunnel_Straight0Mat
+    second: {fileID: 2100000, guid: 6c12b184c2817564e935b3b6966243b1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
