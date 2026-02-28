@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d72aeff046339b54b96fcfd3153e9e5b
+guid: b00d38d6ef5ebf34a823086c0510bf59
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tunnel_CornerPiece90Mat
-    second: {fileID: 2100000, guid: 9a8da992141b1e440b47b5b40a443f3c, type: 2}
+      name: Tunnel_ThreewayPieceMat
+    second: {fileID: 2100000, guid: b8816ab36725f734884b6e91fd13bff4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
