@@ -1,9 +1,8 @@
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Vector2 = UnityEngine.Vector2;
+
 
 [RequireComponent(typeof(PlayerInput))]
 public class InputReader : MonoBehaviour
