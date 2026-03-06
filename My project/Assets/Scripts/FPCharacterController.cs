@@ -11,11 +11,17 @@ public class FPCharacterController:MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintSpeed = 10f;
+    [SerializeField] private float backwardSpeed = 2.5f;
+    private float speedDebug = 0f;
 
     [Header("Camera")]
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private float xRotation;
+
+    [Header("Crouch")]
+    [SerializeField] private float crouchSpeed = 2f;
+    [SerializeField] private Transform player; 
 
 
 
@@ -42,7 +48,20 @@ public class FPCharacterController:MonoBehaviour
 
     void MovePlayer()
     {
-        float currentSpeed = input.Sprint ? sprintSpeed : moveSpeed;
+        float currentSpeed;
+
+        if (input.Move.y < 0)
+        {
+            currentSpeed = backwardSpeed;
+        }
+        else if (input.Move.y > 0.1f && input.Sprint)
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else
+        {
+            currentSpeed = moveSpeed;
+        }
 
         Vector3 Forward = CameraTransform.forward;
         Vector3 Right = CameraTransform.right;
@@ -53,6 +72,8 @@ public class FPCharacterController:MonoBehaviour
         velocity.y = -2f;
 
         controller.Move(velocity * Time.deltaTime);
+        speedDebug = controller.velocity.magnitude;
+        Debug.Log(speedDebug);
     }
 
     void PlayerRotation()
