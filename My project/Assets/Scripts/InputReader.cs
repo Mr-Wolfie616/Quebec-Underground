@@ -1,3 +1,4 @@
+
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,13 +11,13 @@ public class InputReader : MonoBehaviour
     public Vector2 Move { get; private set;}
     public Vector2 Look { get; private set;}
 
-    public bool CrouchPressed { get; private set;}
-
-    public int CrouchedPressCount { get; private set;}
+    public bool Crouch { get; private set;}
+    public bool Sprint { get; private set;}
 
     private PlayerInput playerInput;
 
     private InputAction moveAction;
+    private InputAction sprintAction;
     private InputAction lookAction;
     private InputAction crouchAction;
 
@@ -26,6 +27,7 @@ public class InputReader : MonoBehaviour
 
         var gameplay = playerInput.actions.FindActionMap("Gameplay", true);
         moveAction = gameplay.FindAction("Move", true);
+        sprintAction = gameplay.FindAction("Sprint", true);
         lookAction = gameplay.FindAction("Look", true);
         crouchAction = gameplay.FindAction("Crouch", true);
     }
@@ -37,10 +39,14 @@ public class InputReader : MonoBehaviour
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
 
+        sprintAction.performed += OnSprint;
+        sprintAction.canceled += OnSprint;
+
         lookAction.performed += OnLook;
         lookAction.canceled += OnLook;
 
-        crouchAction.started += OnCrouch;
+       crouchAction.performed += OnCrouch;
+       crouchAction.canceled += OnCrouch;
     }
 
     private void OnDisable()
@@ -48,15 +54,24 @@ public class InputReader : MonoBehaviour
         moveAction.performed -= OnMove;
         moveAction.canceled -= OnMove;
 
+        sprintAction.performed -= OnSprint;
+        sprintAction.canceled -= OnSprint;
+
         lookAction.performed -= OnLook;
         lookAction.canceled -= OnLook;
 
-        crouchAction.started -= OnCrouch;
+        crouchAction.performed -= OnCrouch;
+        crouchAction.canceled -= OnCrouch;
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
     {
         Move = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnSprint(InputAction.CallbackContext ctx)
+    {
+        Sprint = ctx.ReadValueAsButton();
     }
 
     private void OnLook(InputAction.CallbackContext ctx)
@@ -66,17 +81,15 @@ public class InputReader : MonoBehaviour
 
     private void OnCrouch(InputAction.CallbackContext ctx)
     {
-        CrouchPressed = true;
-        CrouchedPressCount++;
+        Crouch = ctx.ReadValueAsButton();
     }
-
-    public void ResetCrouchPressed() => CrouchPressed = false;
 
     public void Clear()
     {
         Move = Vector2.zero;
         Look = Vector2.zero;
-        CrouchPressed = false;
+        Crouch = false;
+        Sprint = false;
     }
 
     private void OnGUI()
@@ -99,7 +112,8 @@ public class InputReader : MonoBehaviour
 
         GUILayout.Label($"Move: {Move}");
         GUILayout.Label($"Look: {Look}");
-        GUILayout.Label($"CrouchPressed: {CrouchPressed} (Count: {CrouchedPressCount})");
+        GUILayout.Label($"Sprint: {Sprint}");
+        GUILayout.Label($"Crouch: {Crouch}");
         GUILayout.EndArea();
     }
 }

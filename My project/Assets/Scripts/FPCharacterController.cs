@@ -42,14 +42,16 @@ public class FPCharacterController:MonoBehaviour
 
     void MovePlayer()
     {
+        float currentSpeed = input.Sprint ? sprintSpeed : moveSpeed;
+
         Vector3 Forward = CameraTransform.forward;
         Vector3 Right = CameraTransform.right;
 
         Vector3 moveDir = (Forward * input.Move.y + Right * input.Move.x).normalized;
 
-        Vector3 velocity = moveDir * moveSpeed;
+        Vector3 velocity = moveDir * currentSpeed;
         velocity.y = -2f;
-        
+
         controller.Move(velocity * Time.deltaTime);
     }
 
