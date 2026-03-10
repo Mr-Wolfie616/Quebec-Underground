@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e30237fe6e72fa468e6d7feb025aa11, type: 3}
       propertyPath: m_Name
-      value: Tunnel_StairStraight
+      value: Tunnel_StairStraight_Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -185,10 +185,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e30237fe6e72fa468e6d7feb025aa11, type: 3}
       insertIndex: -1
       addedObject: {fileID: 712727704119602901}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e30237fe6e72fa468e6d7feb025aa11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1797891928132783789}
   m_SourcePrefab: {fileID: 100100000, guid: 5e30237fe6e72fa468e6d7feb025aa11, type: 3}
 --- !u!4 &6190084951020268463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e30237fe6e72fa468e6d7feb025aa11, type: 3}
   m_PrefabInstance: {fileID: 5939438711257205828}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6821908744561864981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e30237fe6e72fa468e6d7feb025aa11, type: 3}
+  m_PrefabInstance: {fileID: 5939438711257205828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &-1797891928132783789
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821908744561864981}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
