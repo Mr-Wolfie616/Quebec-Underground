@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class FSM : MonoBehaviour
 {
     protected State currentState;
-    protected Dictionary<string, State> states = new();
+    protected Dictionary<NPCState, State> states = new();
 
     protected virtual void Start() { }
 
@@ -13,7 +13,7 @@ public abstract class FSM : MonoBehaviour
         currentState?.Update();
     }
 
-    public void TransitionToState(string stateName)
+    public void TransitionToState(NPCState stateName)
     {
         if (!states.ContainsKey(stateName)) return;
 
@@ -27,3 +27,12 @@ public abstract class FSM : MonoBehaviour
         return currentState;
     }
 }
+public enum NPCState
+{
+    Idle,
+    Roam,
+    Investigate,
+    Hunt,
+    FinalChase
+}
+
