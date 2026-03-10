@@ -9,9 +9,11 @@ public class IdleState : State
 
     private Transform player;
 
-    private float idleDur = 20f;
+    private float idleDur = 10f;
     private float checkInterval = 3f;
     private float detectionDist = 2.5f;
+
+    private float huntChance = 0.7f; // 70 percent chance to hunting
 
     public IdleState(NPCStateManager npc)
     {
@@ -25,7 +27,11 @@ public class IdleState : State
         idleTimer = 0f;
         playerCheckTimer = 0f;
 
-        //npc.agent.isStopped = true;
+        if (npc.agent != null)
+        {
+            npc.agent.isStopped = true;
+            npc.agent.speed = npc.roamSpeed;
+        }
     }
 
     public override void Update()
@@ -33,40 +39,20 @@ public class IdleState : State
         idleTimer += Time.deltaTime;
         playerCheckTimer += Time.deltaTime;
 
-        RaycastFindPlayer();
+        if (playerCheckTimer >= checkInterval)
+        {
+            playerCheckTimer = 0f;
+
+            if (npc.RaycastFindPlayer(detectionDist))
+            {
+                if (Random.value > huntChance) return; // chance it doesnt hunt
+                //npc.TransitionToState(NPCState.Hunt);
+            }
+        }
 
         if (idleTimer >= idleDur)
         {
-            npc.TransitionToState(NPCState.Idle);
-        }
-    }
-
-    private void RaycastFindPlayer()
-    {
-        if (playerCheckTimer < checkInterval) return;
-
-        playerCheckTimer = 0f;
-
-        Vector3 dir = player.transform.position - npc.transform.position;
-        dir.Normalize();
-
-        Ray ray = new Ray(npc.transform.position, dir * detectionDist);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, detectionDist))
-        {
-            if (hit.transform.GetComponent<FPCharacterController>())
-            {
-                Debug.DrawRay(npc.transform.position, dir * detectionDist, Color.green, 1.5f);
-                Debug.Log("Enemy Detect Player");
-            }
-            else
-            {
-                Debug.DrawRay(npc.transform.position, dir * detectionDist, Color.blue, 1.5f);
-            }
-        }
-        else
-        {
-            Debug.DrawRay(npc.transform.position, dir * detectionDist, Color.orangeRed, 1.5f);
+            npc.TransitionToState(NPCState.Roam);
         }
     }
 }

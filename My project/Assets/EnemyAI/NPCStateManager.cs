@@ -14,6 +14,10 @@ public class NPCStateManager : FSM
     public float tempDisableTime = 1.5f;
     private bool agentTemporarilyDisabled;
 
+    public float roamSpeed = 1.5f;
+    public float huntSpeed = 3f;
+    public float finalHuntSpeed = 5f;
+
     protected override void Start()
     {
         base.Start();
@@ -31,6 +35,7 @@ public class NPCStateManager : FSM
         if (rb == null) Debug.LogWarning("No Rigidbody found on NPCStateManager!");
 
         states[NPCState.Idle] = new IdleState(this);
+        states[NPCState.Roam] = new RoamState(this);
 
         TransitionToState(NPCState.Idle);
     }
@@ -50,5 +55,35 @@ public class NPCStateManager : FSM
         if (agent != null) agent.enabled = true;
 
         agentTemporarilyDisabled = false;
+    }
+
+    public bool RaycastFindPlayer(float detectionDist)
+    {
+        Vector3 origin = transform.position;
+        Vector3 aim = player.transform.position;
+
+        Vector3 dir = aim - origin;
+        dir.Normalize();
+
+        Ray ray = new Ray(origin, dir);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, detectionDist))
+        {
+            if (hit.transform.GetComponent<FPCharacterController>())
+            {
+                Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
+                Debug.Log("Enemy Detect Player");
+                return true;
+            }
+            else
+            {
+                Debug.DrawRay(origin, dir * detectionDist, Color.blue, 1.5f);
+            }
+        }
+        else
+        {
+            Debug.DrawRay(origin, dir * detectionDist, Color.black, 1.5f);
+        }
+        return false;
     }
 }

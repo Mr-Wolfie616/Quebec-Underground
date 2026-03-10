@@ -7526,7 +7526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5380164441963932083, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6040080476133856584, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: m_Name
@@ -7534,7 +7534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6040080476133856584, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6842295734582603694, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: m_Constraints
