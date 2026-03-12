@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49e44bcfc0ebcc940b1aeccce85cffe9
+guid: 89d7d749dd131ff4c8ca673ae0e1822d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tunnel_StationMat
-    second: {fileID: 2100000, guid: 440644ef4351fe8449df234a80853016, type: 2}
+      name: Object_46476Mat
+    second: {fileID: 2100000, guid: 054764266eed29d48b0ee016e374eea4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
