@@ -43,10 +43,10 @@ public class IdleState : State
         {
             playerCheckTimer = 0f;
 
-            if (npc.RaycastFindPlayer(detectionDist))
+            if (npc.RaycastFindPlayer(detectionDist, false))
             {
                 if (Random.value > huntChance) return; // chance it doesnt hunt
-                //npc.TransitionToState(NPCState.Hunt);
+                npc.TransitionToState(NPCState.Hunt);
             }
         }
 

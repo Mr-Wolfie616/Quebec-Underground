@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,6 +37,7 @@ public class NPCStateManager : FSM
 
         states[NPCState.Idle] = new IdleState(this);
         states[NPCState.Roam] = new RoamState(this);
+        states[NPCState.Hunt] = new HuntState(this);
 
         TransitionToState(NPCState.Idle);
     }
@@ -57,13 +59,27 @@ public class NPCStateManager : FSM
         agentTemporarilyDisabled = false;
     }
 
-    public bool RaycastFindPlayer(float detectionDist)
+    public bool RaycastFindPlayer(float detectionDist, bool throughWalls)
     {
         Vector3 origin = transform.position;
         Vector3 aim = player.transform.position;
 
         Vector3 dir = aim - origin;
+        float distance = dir.magnitude;
         dir.Normalize();
+
+        if (throughWalls)
+        {
+            if (distance <= detectionDist)
+            {
+                Debug.DrawRay(origin, dir * detectionDist, Color.blue, 1.5f);
+                Debug.Log("Enemy Detect Player (through walls)");
+                return true;
+            }
+
+            Debug.DrawRay(origin, dir * detectionDist, Color.black, 1.5f);
+            return false;
+        }
 
         Ray ray = new Ray(origin, dir);
 
