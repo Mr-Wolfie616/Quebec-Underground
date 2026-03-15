@@ -4418,14 +4418,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47954023503e2084988389e62fa270d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterController
-  moveSpeed: 5
-  sprintSpeed: 10
-  backwardSpeed: 2.5
+  moveSpeed: 2.5
+  sprintSpeed: 5
+  backwardSpeed: 1.25
   lookSensitivity: 3
   CameraTransform: {fileID: 0}
   xRotation: 0
   crouchSpeed: 2
   player: {fileID: 0}
+  crouchScale: {x: 0.5, y: 0.25, z: 0.5}
 --- !u!1001 &933966611
 PrefabInstance:
   m_ObjectHideFlags: 0

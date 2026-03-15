@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.Timeline;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(InputReader))]
@@ -21,7 +22,9 @@ public class FPCharacterController:MonoBehaviour
 
     [Header("Crouch")]
     [SerializeField] private float crouchSpeed = 2f;
-    [SerializeField] private Transform player; 
+    [SerializeField] private Transform player;
+    [SerializeField] private Vector3 crouchScale = new Vector3 (0.5f, 0.25f, 0.5f);
+    private Vector3 standardScale = new Vector3 (0.5f, 0.5f, 0.5f);
 
 
 
@@ -58,9 +61,22 @@ public class FPCharacterController:MonoBehaviour
         {
             currentSpeed = sprintSpeed;
         }
+        else if (input.Move.y > 0.1f && input.Crouch)
+        {
+            currentSpeed = crouchSpeed;
+        }
         else
         {
             currentSpeed = moveSpeed;
+        }
+
+        if (input.Crouch)
+        {
+            transform.localScale = crouchScale;
+        }
+        else
+        {
+            transform.localScale = standardScale;
         }
 
         Vector3 Forward = CameraTransform.forward;
