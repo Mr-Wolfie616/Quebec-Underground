@@ -89,7 +89,7 @@ public class FPCharacterController:MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
         speedDebug = controller.velocity.magnitude;
-        Debug.Log(speedDebug);
+        //Debug.Log(speedDebug);
     }
 
     void PlayerRotation()
