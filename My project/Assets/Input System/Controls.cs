@@ -116,7 +116,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""6f2229b7-590f-484a-b858-afb70a05e9cb"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.0001)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -125,7 +125,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""b595c82e-d323-44d7-9ef3-afda14500589"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.0001)"",
                     ""initialStateCheck"": false
                 },
                 {
