@@ -19,6 +19,19 @@ public class NPCStateManager : FSM
     public float huntSpeed = 3f;
     public float finalHuntSpeed = 5f;
 
+    public bool hasAudioTarget = false;
+    public Vector3 currentAudioTarget;
+    public AudioDataSO currentAudioData;
+    private Vector3 newAudioTarget;
+
+    private void OnEnable()
+    {
+        AudioManager.AlertEnemyEvent += HearAudio;    
+    }
+    private void OnDisable()
+    {
+        AudioManager.AlertEnemyEvent -= HearAudio;
+    }
     protected override void Start()
     {
         base.Start();
@@ -38,6 +51,7 @@ public class NPCStateManager : FSM
         states[NPCState.Idle] = new IdleState(this);
         states[NPCState.Roam] = new RoamState(this);
         states[NPCState.Hunt] = new HuntState(this);
+        states[NPCState.Investigate] = new InvestigateState(this);
 
         TransitionToState(NPCState.Idle);
     }
@@ -101,5 +115,39 @@ public class NPCStateManager : FSM
             Debug.DrawRay(origin, dir * detectionDist, Color.black, 1.5f);
         }
         return false;
+    }
+
+    public void HearAudio(Vector3 pos, AudioDataSO data)
+    {
+        float newDist = Vector3.Distance(transform.position, pos);
+
+        if (newDist > data.alertRadius) return;
+
+        newAudioTarget = pos;
+
+        if (!hasAudioTarget)
+        {
+            currentAudioTarget = newAudioTarget;
+            currentAudioData = data;
+            hasAudioTarget = true;
+        }
+        else
+        {
+            float currentDist = Vector3.Distance(transform.position, currentAudioTarget);
+
+            bool higherPriority = data.alertPriority > currentAudioData.alertPriority;
+            bool closer = newDist < currentDist;
+
+            if (higherPriority || closer)
+            {
+                currentAudioTarget = newAudioTarget;
+                currentAudioData = data;
+            }
+        }
+
+        if (!IsInState(NPCState.Investigate))
+        {
+            TransitionToState(NPCState.Investigate);
+        }
     }
 }

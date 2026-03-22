@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
     Dictionary<string, AudioDataSO> audioLookup = new Dictionary<string, AudioDataSO>();
+
+    public static Action<Vector3, AudioDataSO> AlertEnemyEvent;
 
     void Awake()
     {
@@ -62,44 +65,39 @@ public class AudioManager : MonoBehaviour
         int sequential = data.lastPlayed + 1;
         if (sequential >= data.audioClips.Length)
         {
-            data.lastPlayed = -1;
             sequential = 0;
         }
 
         AudioClip clip = data.playRandom ? data.GetRandomClip() : data.audioClips[sequential];
 
-        if (clip == null)
-            return;
+        if (clip == null) return;
 
-        if (pos == null)
+        data.lastPlayed = sequential;
+        float pitch = UnityEngine.Random.Range(data.pitchMin, data.pitchMax);
+
+        GameObject audioObj = new GameObject($"Audio_{id}");
+        audioObj.transform.parent = transform;
+
+        if (pos != null) audioObj.transform.position = pos.Value;
+
+        AudioSource source = audioObj.AddComponent<AudioSource>();
+
+        source.clip = clip;
+        source.loop = loop;
+        source.pitch = pitch;
+        source.volume = data.volumeMulti;
+        source.spatialBlend = pos != null ? 1f : 0f;
+
+        source.Play();
+
+        if (pos != null && data.alertEnemyOnPlay)
         {
-            GameObject audioObj = new GameObject($"Audio_{id}");
-            audioObj.transform.parent = transform;
-
-            AudioSource source = audioObj.AddComponent<AudioSource>();
-
-            source.clip = clip;
-            source.loop = loop;
-            source.pitch = Random.Range(data.pitchMin, data.pitchMax);
-            source.volume = data.volumeMulti;
-
-            source.Play();
-
-            if (!loop)
-            {
-                Destroy(audioObj, clip.length / source.pitch);
-            }
+            AlertEnemyEvent?.Invoke(pos.Value, data);
         }
-        else
+
+        if (!loop)
         {
-            Vector3 position = pos.Value;
-            //loop
-            //pitch
-            AudioSource.PlayClipAtPoint(clip, position, data.volumeMulti);
+            Destroy(audioObj, clip.length / pitch);
         }
-    }
-
-    public void PlayWorldSound(string id, bool? loopOverride)
-    {
     }
 }
