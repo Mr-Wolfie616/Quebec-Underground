@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: b27d43eb6de59fa44aaf95515fab6faa
+guid: a811d76f6a5eaa44ca51f2fb448845cf
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Util_WallLeftCurvesMat
+    second: {fileID: 2100000, guid: 5793e289ae31877488f3f474466d1504, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
