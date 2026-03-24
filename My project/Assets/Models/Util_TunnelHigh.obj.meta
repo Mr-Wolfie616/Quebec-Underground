@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 76d383263570a0c44846de56ce30cde7
+guid: 352975cfd568221428fbc849d8a27631
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tunnel_DoorwayMat
-    second: {fileID: 2100000, guid: 0d3f8af1fd9cceb42a8ca7cf26b4ca12, type: 2}
+      name: Util_TunnelHighMat
+    second: {fileID: 2100000, guid: 0c3051b3da5825c4fbad7fc18471713a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
