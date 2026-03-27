@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Dither:
-        m_Texture: {fileID: 2800000, guid: 5f2d1084c9364354c9cb39f1e8f6de72, type: 3}
+        m_Texture: {fileID: 2800000, guid: dc29a02b95186a5469ec85e296404df1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -50,7 +50,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _Dither_Opacity: 0.7
+    - _Dither_Opacity: 0.6
     - _Quantization_Level: 64
     - _Saturation_Layers: 5
     - _Stencil: 0

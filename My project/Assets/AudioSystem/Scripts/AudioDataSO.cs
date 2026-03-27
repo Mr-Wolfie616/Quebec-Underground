@@ -33,16 +33,12 @@ public class AudioDataSO : ScriptableObject
     [Header("Gameplay")]
     public bool alertEnemyOnPlay = true;
     public float alertRadius = 16f;
-    [Range(0, 10)]
-    public int alertPriority = 1;
 
     [HideInInspector]
     public int lastPlayed = -1;
     public float GetRandomPitch()
     {
-        float min = Mathf.Min(pitchMin, pitchMax);
-        float max = Mathf.Max(pitchMin, pitchMax);
-        return Random.Range(min, max);
+        return Random.Range(pitchMin, pitchMax);
     }
     public AudioClip GetRandomClip()
     {

@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
   m_Name: AudioDataSO
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  id: TEST_ui_keypress_1
+  id: audioClip
   audioType: 0
-  audioClips:
-  - {fileID: 8300000, guid: d21ce11ce8c2c884bab0a962a736a715, type: 3}
+  audioClips: []
   loopByDefault: 0
   playRandom: 0
   volumeMulti: 1
-  pitchMin: 1
+  is3D: 0
+  pitchMin: 0
   pitchMax: 1
   overrideMixer: {fileID: 0}
   alertEnemyOnPlay: 1
-  alertRadius: 999
-  alertPriority: 10
-  lastPlayed: 0
+  alertRadius: 5
+  lastPlayed: -1
