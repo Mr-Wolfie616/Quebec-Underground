@@ -208,6 +208,9 @@ MonoBehaviour:
   crouchSpeed: 2
   player: {fileID: 0}
   crouchScale: {x: 0.5, y: 0.25, z: 0.5}
+  crouchFootstepInterval: 0.55
+  walkFootstepInterval: 0.35
+  runFootstepInterval: 0.3
 --- !u!114 &4216590998713164146
 MonoBehaviour:
   m_ObjectHideFlags: 0

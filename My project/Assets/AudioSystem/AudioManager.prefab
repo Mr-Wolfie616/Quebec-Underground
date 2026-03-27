@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a69adc947bfc841ae1992bd4a71693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  playOnWake:
+  - {fileID: 11400000, guid: 84f0280c95a6ebf469bb79e3d89f2f9f, type: 2}
