@@ -203,12 +203,12 @@ MonoBehaviour:
   moveSpeed: 2.5
   sprintSpeed: 5
   backwardSpeed: 1.25
-  lookSensitivity: 3
+  lookSensitivity: 5
   CameraTransform: {fileID: 0}
   xRotation: 0
   crouchSpeed: 2
   player: {fileID: 0}
-  crouchScale: {x: 0.5, y: 0.25, z: 0.5}
+  crouchScale: {x: 0.3, y: 0.25, z: 0.3}
   crouchFootstepInterval: 0.55
   walkFootstepInterval: 0.35
   runFootstepInterval: 0.3
@@ -316,7 +316,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 279
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8600000, guid: 1342cebbd6505f244900af1d8ca2cdc8, type: 2}
   m_TargetDisplay: 0
