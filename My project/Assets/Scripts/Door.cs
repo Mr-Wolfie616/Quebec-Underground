@@ -7,7 +7,7 @@ public class Door : MonoBehaviour, IInteractable
      [Header("References")]
     public Transform doorParent; // the actual door object
     public Transform doorPivot;  // hinge position
-    public Transform interactPoint; // the place the player interacts
+    public Transform interactPoint;
 
     [Header("Door Settings")]
     public float openAngle = 90f;
@@ -33,7 +33,7 @@ public class Door : MonoBehaviour, IInteractable
             delta
         );
 
-         interactPoint.RotateAround(
+        interactPoint.RotateAround(
             doorPivot.position,
             Vector3.up,
             delta
