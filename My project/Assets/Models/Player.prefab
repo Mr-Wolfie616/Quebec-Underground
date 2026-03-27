@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8516607427631455722}
   - component: {fileID: 6723733144926689185}
   - component: {fileID: 4216590998713164146}
+  - component: {fileID: 1007810213572165179}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -224,6 +225,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHideScript
   isHiding: 0
+--- !u!114 &1007810213572165179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201153779570129920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45e631eac55980479cbe3ffc7b48d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterInteraction
+  interactlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  Camera: {fileID: 5531649479095752386}
+  range: 3
 --- !u!1 &2136123706098894114
 GameObject:
   m_ObjectHideFlags: 0
