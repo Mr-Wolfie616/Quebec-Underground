@@ -7235,6 +7235,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4165435382599645383, guid: 4fca7fb6100809247bb3bc008fa6362d, type: 3}
+--- !u!4 &520080393 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5124190120538677585, guid: 5abea793698bdcc42a4777e612eaa3db, type: 3}
+  m_PrefabInstance: {fileID: 1588627209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &524732970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fca7fb6100809247bb3bc008fa6362d, type: 3}
@@ -25342,6 +25347,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2337463717716090868, guid: 5abea793698bdcc42a4777e612eaa3db, type: 3}
+      propertyPath: doorRoot
+      value: 
+      objectReference: {fileID: 2096958860}
+    - target: {fileID: 2337463717716090868, guid: 5abea793698bdcc42a4777e612eaa3db, type: 3}
+      propertyPath: openSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337463717716090868, guid: 5abea793698bdcc42a4777e612eaa3db, type: 3}
+      propertyPath: interactPoint
+      value: 
+      objectReference: {fileID: 520080393}
     - target: {fileID: 3933474441855448088, guid: 5abea793698bdcc42a4777e612eaa3db, type: 3}
       propertyPath: m_Name
       value: Tunnel_Door (2)
@@ -33690,6 +33707,11 @@ MeshFilter:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8312183713945040976, guid: 1a8acf432595c8f4c85731deb2408c9e, type: 3}
   m_PrefabInstance: {fileID: 789245750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2096958860 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1612606740481287611, guid: 5abea793698bdcc42a4777e612eaa3db, type: 3}
+  m_PrefabInstance: {fileID: 1588627209}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2098155723
 PrefabInstance:
