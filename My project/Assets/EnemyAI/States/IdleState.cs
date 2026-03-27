@@ -24,6 +24,7 @@ public class IdleState : State
     public override void Enter()
     {
         Debug.Log($"NPC AI Entered Idle State");
+        idleDur = idleDur - (Random.Range(-2, 4));
         idleTimer = 0f;
         playerCheckTimer = 0f;
 

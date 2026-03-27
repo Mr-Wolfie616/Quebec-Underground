@@ -107,30 +107,5 @@ public class InputReader : MonoBehaviour
         Sprint = false;
         Interact = false;
     }
-
-    private void OnGUI()
-    {
-        var cam = playerInput.camera;
-        if (cam == null) cam = GetComponentInChildren<Camera>(true);
-        if (cam == null) cam = Camera.main;
-        if (cam == null) return;
-
-        Rect pr = cam.pixelRect;
-
-        float pad = 10f;
-        float w = 320f;
-        float h = 120f;
-
-        var area = new Rect(pr.xMin + pad, pr.yMin + pad, w, h );
-
-        GUILayout.BeginArea(area, GUI.skin.box);
-        GUILayout.Label($"P{playerInput.playerIndex} Scheme: {playerInput.currentControlScheme}");
-
-        GUILayout.Label($"Move: {Move}");
-        GUILayout.Label($"Look: {Look}");
-        GUILayout.Label($"Sprint: {Sprint}");
-        GUILayout.Label($"Crouch: {Crouch}");
-        GUILayout.EndArea();
-    }
 }
 

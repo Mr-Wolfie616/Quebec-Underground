@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,12 +27,19 @@ public class FPCharacterController:MonoBehaviour
     [SerializeField] private Vector3 crouchScale = new Vector3 (0.5f, 0.25f, 0.5f);
     private Vector3 standardScale = new Vector3 (0.5f, 0.5f, 0.5f);
 
+    [Header("Audio")]
+    [SerializeField] private float crouchFootstepInterval = 0.01f;
+    [SerializeField] private float walkFootstepInterval = 0.05f;
+    [SerializeField] private float runFootstepInterval = 0.1f;
+    private float footstepInterval = 0f;
 
-
+    private Coroutine footstepRoutine;
     private CharacterController controller;
     private InputReader input;
+    private PlayerHideScript playerHide;
     private void Awake()
     {
+        playerHide = GetComponent<PlayerHideScript>();
         controller = GetComponent<CharacterController>();
         input = GetComponent<InputReader>();
         if (CameraTransform == null)
@@ -49,6 +57,36 @@ public class FPCharacterController:MonoBehaviour
         PlayerRotation();
     }
 
+    IEnumerator FootStepCoroutine()
+    {
+        while (true)
+        {
+            AudioManager.Instance.PlaySound("SFX_Footsteps", transform.position, null);
+            yield return new WaitForSeconds(footstepInterval);
+        }
+    }
+
+    void HandleFootsteps()
+    {
+        bool isMoving = controller.velocity.magnitude > 0.1f && controller.isGrounded;
+
+        if (isMoving)
+        {
+            if (footstepRoutine == null)
+            {
+                footstepRoutine = StartCoroutine(FootStepCoroutine());
+            }
+        }
+        else
+        {
+            if (footstepRoutine != null)
+            {
+                StopCoroutine(footstepRoutine);
+                footstepRoutine = null;
+            }
+        }
+    }
+
     void MovePlayer()
     {
         float currentSpeed;
@@ -56,23 +94,29 @@ public class FPCharacterController:MonoBehaviour
         if (input.Move.y < 0)
         {
             currentSpeed = backwardSpeed;
+            footstepInterval = walkFootstepInterval;
         }
         else if (input.Move.y > 0.1f && input.Sprint)
         {
             currentSpeed = sprintSpeed;
+            footstepInterval = runFootstepInterval;
         }
-        else if (input.Move.y > 0.1f && input.Crouch)
+        else if ((input.Move.y > 0.1f && input.Crouch) || playerHide.isHiding)
         {
             currentSpeed = crouchSpeed;
+            footstepInterval = crouchFootstepInterval;
+            Debug.Log("Player Hidden");
         }
         else
         {
             currentSpeed = moveSpeed;
+            footstepInterval = walkFootstepInterval;
         }
 
-        if (input.Crouch)
+        if (input.Crouch || playerHide.isHiding)
         {
             transform.localScale = crouchScale;
+            Debug.Log("Player Hidden 1");
         }
         else
         {
@@ -90,6 +134,8 @@ public class FPCharacterController:MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
         speedDebug = controller.velocity.magnitude;
         //Debug.Log(speedDebug);
+
+        HandleFootsteps();
     }
 
     void PlayerRotation()

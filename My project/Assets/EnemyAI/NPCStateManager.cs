@@ -19,6 +19,19 @@ public class NPCStateManager : FSM
     public float huntSpeed = 3f;
     public float finalHuntSpeed = 5f;
 
+    public bool hasAudioTarget = false;
+    public Vector3 currentAudioTarget;
+    public AudioDataSO currentAudioData;
+    private Vector3 newAudioTarget;
+
+    private void OnEnable()
+    {
+        AudioManager.AlertEnemyEvent += HearAudio;    
+    }
+    private void OnDisable()
+    {
+        AudioManager.AlertEnemyEvent -= HearAudio;
+    }
     protected override void Start()
     {
         base.Start();
@@ -38,8 +51,31 @@ public class NPCStateManager : FSM
         states[NPCState.Idle] = new IdleState(this);
         states[NPCState.Roam] = new RoamState(this);
         states[NPCState.Hunt] = new HuntState(this);
+        states[NPCState.Investigate] = new InvestigateState(this);
 
         TransitionToState(NPCState.Idle);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (agent == null || animator == null) return;
+
+        float currentWalkSpeed = agent.velocity.magnitude;
+
+        if (currentWalkSpeed >= huntSpeed)
+        {
+            animator.SetFloat("speed", 2f);
+        }
+        else if (currentWalkSpeed >= roamSpeed/2)
+        {
+            animator.SetFloat("speed", 1f);
+        }
+        else
+        {
+            animator.SetFloat("speed", 0f);
+        }
     }
 
     private IEnumerator TemporarilyDisableAgent()
@@ -87,9 +123,28 @@ public class NPCStateManager : FSM
         {
             if (hit.transform.GetComponent<FPCharacterController>())
             {
-                Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
-                Debug.Log("Enemy Detect Player");
-                return true;
+                if(hit.transform.TryGetComponent<PlayerHideScript>(out var hide))
+                {
+                    if (hide.isHiding)
+                    {
+                        Debug.DrawRay(origin, dir * detectionDist, Color.purple, 1.5f);
+                        Debug.Log("Enemy No Detect Hiding Player");
+                        return false;
+                    }
+                    else
+                    {
+                        Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
+                        Debug.Log("Enemy Detect Player");
+                        return true;
+                    }
+                }
+                else
+                {
+                    Debug.Log("NO HIDESCRIPT FOUND ON PLAYER!");
+                    Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
+                    Debug.Log("Enemy Detect Player");
+                    return true;
+                }
             }
             else
             {
@@ -101,5 +156,39 @@ public class NPCStateManager : FSM
             Debug.DrawRay(origin, dir * detectionDist, Color.black, 1.5f);
         }
         return false;
+    }
+
+    public void HearAudio(Vector3 pos, AudioDataSO data)
+    {
+        float newDist = Vector3.Distance(transform.position, pos);
+
+        if (newDist > data.alertRadius) return;
+
+        newAudioTarget = pos;
+
+        if (!hasAudioTarget)
+        {
+            currentAudioTarget = newAudioTarget;
+            currentAudioData = data;
+            hasAudioTarget = true;
+        }
+        else
+        {
+            float currentDist = Vector3.Distance(transform.position, currentAudioTarget);
+
+            bool higherPriority = data.alertPriority > currentAudioData.alertPriority;
+            bool closer = newDist < currentDist;
+
+            if (higherPriority || closer)
+            {
+                currentAudioTarget = newAudioTarget;
+                currentAudioData = data;
+            }
+        }
+
+        if (!IsInState(NPCState.Investigate))
+        {
+            TransitionToState(NPCState.Investigate);
+        }
     }
 }
