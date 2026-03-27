@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   doorParent: {fileID: 1612606740481287611}
   doorPivot: {fileID: 6399021147294621109}
-  interactPoint: {fileID: 0}
+  interactPoint: {fileID: 5124190120538677585}
   openAngle: 90
   openSpeed: 3
 --- !u!1001 &4204088244533594441
