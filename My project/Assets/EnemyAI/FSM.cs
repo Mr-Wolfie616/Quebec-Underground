@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class FSM : MonoBehaviour
 {
     protected State currentState;
+    protected NPCState currentStateKey;
     protected Dictionary<NPCState, State> states = new();
 
     protected virtual void Start() { }
@@ -15,16 +16,29 @@ public abstract class FSM : MonoBehaviour
 
     public void TransitionToState(NPCState stateName)
     {
+        if (states == null) return;
         if (!states.ContainsKey(stateName)) return;
 
+        if (currentState != null && currentStateKey == stateName) return;
+
         currentState?.Exit();
+
         currentState = states[stateName];
+        currentStateKey = stateName;
+
+        if (currentState == null) return;
+
         currentState.Enter();
     }
 
-    public State GetCurrentState()
+    public bool IsInState(NPCState state)
     {
-        return currentState;
+        return currentStateKey == state;
+    }
+
+    public NPCState GetCurrentStateKey()
+    {
+        return currentStateKey;
     }
 }
 public enum NPCState
