@@ -36,8 +36,10 @@ public class FPCharacterController:MonoBehaviour
     private Coroutine footstepRoutine;
     private CharacterController controller;
     private InputReader input;
+    private PlayerHideScript playerHide;
     private void Awake()
     {
+        playerHide = GetComponent<PlayerHideScript>();
         controller = GetComponent<CharacterController>();
         input = GetComponent<InputReader>();
         if (CameraTransform == null)
@@ -99,10 +101,11 @@ public class FPCharacterController:MonoBehaviour
             currentSpeed = sprintSpeed;
             footstepInterval = runFootstepInterval;
         }
-        else if (input.Move.y > 0.1f && input.Crouch)
+        else if ((input.Move.y > 0.1f && input.Crouch) || playerHide.isHiding)
         {
             currentSpeed = crouchSpeed;
             footstepInterval = crouchFootstepInterval;
+            Debug.Log("Player Hidden");
         }
         else
         {
@@ -110,9 +113,10 @@ public class FPCharacterController:MonoBehaviour
             footstepInterval = walkFootstepInterval;
         }
 
-        if (input.Crouch)
+        if (input.Crouch || playerHide.isHiding)
         {
             transform.localScale = crouchScale;
+            Debug.Log("Player Hidden 1");
         }
         else
         {
