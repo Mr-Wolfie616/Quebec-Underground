@@ -56,6 +56,28 @@ public class NPCStateManager : FSM
         TransitionToState(NPCState.Idle);
     }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        if (agent == null || animator == null) return;
+
+        float currentWalkSpeed = agent.velocity.magnitude;
+
+        if (currentWalkSpeed >= huntSpeed)
+        {
+            animator.SetFloat("speed", 2f);
+        }
+        else if (currentWalkSpeed >= roamSpeed/2)
+        {
+            animator.SetFloat("speed", 1f);
+        }
+        else
+        {
+            animator.SetFloat("speed", 0f);
+        }
+    }
+
     private IEnumerator TemporarilyDisableAgent()
     {
         agentTemporarilyDisabled = true;
@@ -101,9 +123,28 @@ public class NPCStateManager : FSM
         {
             if (hit.transform.GetComponent<FPCharacterController>())
             {
-                Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
-                Debug.Log("Enemy Detect Player");
-                return true;
+                if(hit.transform.TryGetComponent<PlayerHideScript>(out var hide))
+                {
+                    if (hide.isHiding)
+                    {
+                        Debug.DrawRay(origin, dir * detectionDist, Color.purple, 1.5f);
+                        Debug.Log("Enemy No Detect Hiding Player");
+                        return false;
+                    }
+                    else
+                    {
+                        Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
+                        Debug.Log("Enemy Detect Player");
+                        return true;
+                    }
+                }
+                else
+                {
+                    Debug.Log("NO HIDESCRIPT FOUND ON PLAYER!");
+                    Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
+                    Debug.Log("Enemy Detect Player");
+                    return true;
+                }
             }
             else
             {

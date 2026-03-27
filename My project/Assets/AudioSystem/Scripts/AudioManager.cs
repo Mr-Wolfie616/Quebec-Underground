@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public List<AudioDataSO> playOnWake = new List<AudioDataSO>();
     public static AudioManager Instance { get; private set; }
     Dictionary<string, AudioDataSO> audioLookup = new Dictionary<string, AudioDataSO>();
 
@@ -21,6 +22,10 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadAudio();
+
+        foreach (var clip in playOnWake) {
+            PlaySound(clip.id, null, null);
+        }
     }
 
     void LoadAudio()

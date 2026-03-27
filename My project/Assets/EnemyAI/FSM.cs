@@ -16,13 +16,17 @@ public abstract class FSM : MonoBehaviour
 
     public void TransitionToState(NPCState stateName)
     {
+        if (states == null) return;
         if (!states.ContainsKey(stateName)) return;
-        if (currentStateKey == stateName) return;
+
+        if (currentState != null && currentStateKey == stateName) return;
 
         currentState?.Exit();
 
         currentState = states[stateName];
         currentStateKey = stateName;
+
+        if (currentState == null) return;
 
         currentState.Enter();
     }
