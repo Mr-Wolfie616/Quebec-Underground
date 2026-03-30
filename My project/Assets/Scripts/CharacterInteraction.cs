@@ -21,7 +21,7 @@ public class CharacterInteraction : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.transform.position, Camera.transform.TransformDirection(Vector3.forward), out hit, range, interactlayer))
@@ -30,11 +30,11 @@ public class CharacterInteraction : MonoBehaviour
 
             if (interactable != null)
             {
-                if (input.Interact)
+                if (input.InteractPressed)
                 {
                     interactable.Interact();
                 }
-                if (input.Press)
+                if (input.PressPressed)
                 {
                     interactable.Press();
                 }

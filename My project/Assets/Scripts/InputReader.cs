@@ -14,9 +14,8 @@ public class InputReader : MonoBehaviour
     public bool Crouch { get; private set;}
     public bool Sprint { get; private set;}
 
-    public bool Interact {get; private set;}
-
-    public bool Press { get; private set; }
+    public bool InteractPressed { get; private set; }
+    public bool PressPressed { get; private set; }
 
     private PlayerInput playerInput;
 
@@ -40,6 +39,11 @@ public class InputReader : MonoBehaviour
         pressAction = gameplay.FindAction("Press", true);
     }
 
+    private void LateUpdate()
+    {
+        InteractPressed = false;
+        PressPressed = false;
+    }
     private void OnEnable()
     {
         playerInput.actions.FindActionMap("Gameplay", true).Enable();
@@ -57,10 +61,10 @@ public class InputReader : MonoBehaviour
        crouchAction.canceled += OnCrouch;
 
        interactAction.performed += OnInteract;
-        interactAction.canceled += OnInteract;
+        //interactAction.canceled += OnInteract;
 
         pressAction.performed += OnPress;
-        pressAction.canceled += OnPress;
+        //pressAction.canceled += OnPress;
     }
 
     private void OnDisable()
@@ -78,10 +82,10 @@ public class InputReader : MonoBehaviour
         crouchAction.canceled -= OnCrouch;
 
         interactAction.performed -= OnInteract;
-        interactAction.canceled -= OnInteract;
+        //interactAction.canceled -= OnInteract;
 
         pressAction.performed -= OnPress;
-        pressAction.canceled -= OnPress;
+        //pressAction.canceled -= OnPress;
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
@@ -106,12 +110,12 @@ public class InputReader : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext ctx)
     {
-        Interact = ctx.ReadValueAsButton();
+        InteractPressed = true;
     }
 
     private void OnPress(InputAction.CallbackContext ctx)
     {
-        Press = ctx.ReadValueAsButton();
+        PressPressed = true;
     }
 
     public void Clear()
@@ -120,7 +124,6 @@ public class InputReader : MonoBehaviour
         Look = Vector2.zero;
         Crouch = false;
         Sprint = false;
-        Interact = false;
     }
 }
 
