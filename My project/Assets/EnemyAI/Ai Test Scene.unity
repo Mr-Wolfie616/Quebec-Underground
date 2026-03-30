@@ -19005,9 +19005,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5843215046884583914, guid: bda22becd2bbebf4fb66c6136856a447, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843215046884583914, guid: bda22becd2bbebf4fb66c6136856a447, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.769
+      objectReference: {fileID: 0}
     - target: {fileID: 6595207845664226275, guid: bda22becd2bbebf4fb66c6136856a447, type: 3}
       propertyPath: m_Name
       value: KeypadBody
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306221083977537448, guid: bda22becd2bbebf4fb66c6136856a447, type: 3}
+      propertyPath: digit
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
