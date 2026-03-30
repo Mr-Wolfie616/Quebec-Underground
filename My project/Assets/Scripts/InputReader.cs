@@ -16,6 +16,8 @@ public class InputReader : MonoBehaviour
 
     public bool Interact {get; private set;}
 
+    public bool Press { get; private set; }
+
     private PlayerInput playerInput;
 
     private InputAction moveAction;
@@ -23,6 +25,7 @@ public class InputReader : MonoBehaviour
     private InputAction lookAction;
     private InputAction crouchAction;
     private InputAction interactAction;
+    private InputAction pressAction;
 
     void Awake()
     {
@@ -34,6 +37,7 @@ public class InputReader : MonoBehaviour
         lookAction = gameplay.FindAction("Look", true);
         crouchAction = gameplay.FindAction("Crouch", true);
         interactAction = gameplay.FindAction("Interact", true);
+        pressAction = gameplay.FindAction("Press", true);
     }
 
     private void OnEnable()
@@ -53,7 +57,10 @@ public class InputReader : MonoBehaviour
        crouchAction.canceled += OnCrouch;
 
        interactAction.performed += OnInteract;
-       interactAction.canceled += OnInteract;
+        interactAction.canceled += OnInteract;
+
+        pressAction.performed += OnPress;
+        pressAction.canceled += OnPress;
     }
 
     private void OnDisable()
@@ -71,7 +78,10 @@ public class InputReader : MonoBehaviour
         crouchAction.canceled -= OnCrouch;
 
         interactAction.performed -= OnInteract;
-        interactAction.canceled -=  OnInteract;
+        interactAction.canceled -= OnInteract;
+
+        pressAction.performed -= OnPress;
+        pressAction.canceled -= OnPress;
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
@@ -97,6 +107,11 @@ public class InputReader : MonoBehaviour
     private void OnInteract(InputAction.CallbackContext ctx)
     {
         Interact = ctx.ReadValueAsButton();
+    }
+
+    private void OnPress(InputAction.CallbackContext ctx)
+    {
+        Press = ctx.ReadValueAsButton();
     }
 
     public void Clear()

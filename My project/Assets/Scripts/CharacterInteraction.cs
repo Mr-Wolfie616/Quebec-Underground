@@ -30,9 +30,13 @@ public class CharacterInteraction : MonoBehaviour
 
             if (interactable != null)
             {
-                if(input.Interact)
+                if (input.Interact)
                 {
                     interactable.Interact();
+                }
+                if (input.Press)
+                {
+                    interactable.Press();
                 }
             }
         }

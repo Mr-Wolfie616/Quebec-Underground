@@ -104,6 +104,15 @@ public class NPCStateManager : FSM
         float distance = dir.magnitude;
         dir.Normalize();
 
+        var hide = player.GetComponentInParent<PlayerHideScript>();
+
+        if (hide != null && hide.isHiding)
+        {
+            Debug.DrawRay(origin, dir * detectionDist, Color.purple, 1.5f);
+            Debug.Log("Enemy No Detect Hiding Player");
+            return false;
+        }
+
         if (throughWalls)
         {
             if (distance <= detectionDist)
@@ -123,28 +132,9 @@ public class NPCStateManager : FSM
         {
             if (hit.transform.GetComponent<FPCharacterController>())
             {
-                if(hit.transform.TryGetComponent<PlayerHideScript>(out var hide))
-                {
-                    if (hide.isHiding)
-                    {
-                        Debug.DrawRay(origin, dir * detectionDist, Color.purple, 1.5f);
-                        Debug.Log("Enemy No Detect Hiding Player");
-                        return false;
-                    }
-                    else
-                    {
-                        Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
-                        Debug.Log("Enemy Detect Player");
-                        return true;
-                    }
-                }
-                else
-                {
-                    Debug.Log("NO HIDESCRIPT FOUND ON PLAYER!");
-                    Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
-                    Debug.Log("Enemy Detect Player");
-                    return true;
-                }
+                Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
+                Debug.Log("Enemy Detect Player");
+                return true;
             }
             else
             {

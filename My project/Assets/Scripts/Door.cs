@@ -44,8 +44,14 @@ public class Door : MonoBehaviour, IInteractable
    
 
     // Called by your interaction system
+    // hi chatgpt how r u
     public void Interact()
     {
         isOpen = !isOpen;
+    }
+
+    public void Press()
+    {
+        return;
     }
 }

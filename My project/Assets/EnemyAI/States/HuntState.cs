@@ -16,8 +16,6 @@ public class HuntState : State
 
     private Vector3 lastKnownPlayerPos;
 
-    private bool lostPlayer = false;
-
     public HuntState(NPCStateManager npc)
     {
         this.npc = npc;
@@ -27,7 +25,10 @@ public class HuntState : State
     public override void Enter()
     {
         Debug.Log($"NPC AI Entered Hunt State");
+
         playerCheckTimer = 0f;
+        checkTime = 0f;
+        
         lastKnownPlayerPos = player.position;
 
         npc.agent.isStopped = false;
@@ -45,26 +46,27 @@ public class HuntState : State
         {
             playerCheckTimer = 0f;
 
-            if (!npc.RaycastFindPlayer(detectionDist, true))
+            bool canSeePlayer = npc.RaycastFindPlayer(detectionDist, true);
+
+            if (canSeePlayer)
             {
-                Debug.Log("NPC AI cant find player");
-                lostPlayer = true;
+                Debug.Log("NPC Hunt Sees Player");
+                checkTime = 0f;
+                if (Vector3.Distance(lastKnownPlayerPos, player.position) > 1f)
+                {
+                    lastKnownPlayerPos = player.position;
+                    npc.agent.SetDestination(lastKnownPlayerPos);
+                }
             }
+
             else
             {
-                lostPlayer = false;
-                checkTime = 0f;
-                Debug.Log("NPC AI NOT Lost player");
-
-                lastKnownPlayerPos = player.position;
-                npc.agent.SetDestination(lastKnownPlayerPos);
+                Debug.Log("NPC Hunt CANT See Player");
+                checkTime += checkInterval;
             }
-        }
 
-        if (lostPlayer)
-        {
-            checkTime += Time.deltaTime;
-            if (checkTime >= loseTime) 
+            // Fully lost player
+            if (checkTime >= loseTime)
             {
                 Debug.Log($"NPC AI FULLY LOST PLAYER FOR {loseTime} SECONDS");
                 npc.TransitionToState(NPCState.Roam);

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class NPCDeathTrigger : MonoBehaviour
 {
-    private async Task OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<FPCharacterController>(out var controller))
         {
