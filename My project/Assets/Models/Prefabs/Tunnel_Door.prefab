@@ -102,7 +102,7 @@ MonoBehaviour:
   doorPivot: {fileID: 6399021147294621109}
   interactPoint: {fileID: 5124190120538677585}
   openAngle: 90
-  openSpeed: 3
+  openSpeed: 100
 --- !u!1001 &4204088244533594441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,15 +113,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3a69d5eefefeb55429a247cc68009b9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a69d5eefefeb55429a247cc68009b9b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a69d5eefefeb55429a247cc68009b9b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -40
+      value: -6.004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a69d5eefefeb55429a247cc68009b9b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -133,11 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a69d5eefefeb55429a247cc68009b9b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a69d5eefefeb55429a247cc68009b9b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a69d5eefefeb55429a247cc68009b9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
