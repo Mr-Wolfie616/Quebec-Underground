@@ -17,7 +17,8 @@ public class KeypadButton : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        return;
+        parentKeypad.AddDigit(digit);
+        AudioManager.Instance.PlaySound("sfx_KeypadPress", transform.position, null);
     }
 
     public void Press()

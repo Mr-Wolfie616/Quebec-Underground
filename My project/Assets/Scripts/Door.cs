@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using UnityEngine;
 
 
@@ -12,6 +13,7 @@ public class Door : MonoBehaviour, IInteractable
     [Header("Door Settings")]
     public float openAngle = 90f;
     public float openSpeed = 120f;
+    public bool locked = false;
 
     private bool isOpen = false;
     private float currentAngle = 0f;
@@ -47,7 +49,25 @@ public class Door : MonoBehaviour, IInteractable
     // hi chatgpt how r u
     public void Interact()
     {
+        if (locked) return;
         isOpen = !isOpen;
+    }
+
+    public void ForceOpen()
+    {
+        if (locked)
+        {
+            locked = false;
+        }
+        if (!isOpen)
+        {
+            isOpen = true;
+        }
+    }
+
+    public void ToggleLock()
+    {
+        locked = !locked;
     }
 
     public void Press()
