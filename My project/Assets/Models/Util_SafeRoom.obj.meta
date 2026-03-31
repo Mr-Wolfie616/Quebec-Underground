@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Util_SafeRoomMat
+      name: Util_SaferoomMat
     second: {fileID: 2100000, guid: e9c678a47365aa04c8797afb2bc3258c, type: 2}
   materials:
     materialImportMode: 2
