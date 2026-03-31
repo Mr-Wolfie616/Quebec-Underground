@@ -15,9 +15,9 @@ TagManager:
   - Enemy
   - Interactable
   - Door
-  - 
-  - 
-  - 
+  - MazeWall
+  - MazeBoundaries
+  - MazeWin
   - 
   - 
   - 
