@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterInteraction : MonoBehaviour
@@ -41,4 +42,14 @@ public class CharacterInteraction : MonoBehaviour
             }
         }
     } 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
+
+        if (interactable != null)
+        {
+            interactable.Interact();
+        }
+    }
 }
