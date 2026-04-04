@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,9 +7,10 @@ using UnityEngine.Events;
 public class KeypadPuzzleScript : MonoBehaviour
 {
     public PuzzleDataSO puzzleData;
+    public float resetTime = 1f;
     private List<int> currentInput = new();
     private int currentAttempts;
-    private bool completed = false;
+    private bool interactable = true;
     private KeypadVisuals visualScript;
 
     public UnityEvent OnPuzzleCompleted;
@@ -22,7 +24,7 @@ public class KeypadPuzzleScript : MonoBehaviour
 
     public void AddDigit(int digit)
     {
-        if (completed) { return; }
+        if (!interactable) { return; }
 
         currentInput.Add(digit);
 
@@ -45,16 +47,51 @@ public class KeypadPuzzleScript : MonoBehaviour
             if (currentInput[i] != puzzleData.solution[i])
             {
                 Debug.Log("CODE INCORRECT");
-                visualScript.StartMessage("INCORRECT");
+                visualScript.StartMessage("X X X X", 2f);
                 currentInput.Clear();
+                CheckAttempts();
                 return;
             }
         }
 
-        visualScript.StartMessage("CORRECT");
-        completed = true;
+        visualScript.StartMessage("GOOD", 2f);
+        interactable = false;
+        //AudioManager.Instance.PlaySound(SFX_Keypad_Success);
         OnPuzzleCompleted?.Invoke();
         Debug.Log("CODE CORRECT!!!!");
+    }
+
+    private void CheckAttempts()
+    {
+        if (currentAttempts == puzzleData.maxAttempts)
+        {
+            Debug.Log("Too many attempts");
+            StartCoroutine(TooManyAttemptsRoutine());
+        }
+    }
+
+    private IEnumerator TooManyAttemptsRoutine()
+    {
+        interactable = false;
+
+        //AudioManager.Instance.PlaySound(SFX_Keypad_Alert);
+
+        float timer = resetTime;
+
+        while (timer > 0f)
+        {
+            visualScript.codeText.text = Mathf.CeilToInt(timer).ToString();
+
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        currentAttempts = 0;
+        currentInput.Clear();
+        interactable = true;
+
+        visualScript.StartMessage("READY", 1f);
+        visualScript.UpdateCodeText();
     }
 
     public void ClearInput()

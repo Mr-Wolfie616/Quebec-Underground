@@ -15,5 +15,6 @@ public class EventInteractableButton : MonoBehaviour, IInteractable
     public void Interact()
     {
         OnInteracted?.Invoke();
+        AudioManager.Instance.PlaySound("sfx_KeypadPress", transform.position, null);
     }
 }

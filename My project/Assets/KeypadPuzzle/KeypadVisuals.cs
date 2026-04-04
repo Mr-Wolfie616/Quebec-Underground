@@ -36,21 +36,21 @@ public class KeypadVisuals : MonoBehaviour
         codeText.text = display.ToString();
     }
 
-    public void StartMessage(string message)
+    public void StartMessage(string message, float time)
     {
         if (messageRoutine != null)
         {
             StopCoroutine(messageRoutine);
         }
 
-        messageRoutine = StartCoroutine(ShowMessageRoutine(message));
+        messageRoutine = StartCoroutine(ShowMessageRoutine(message, time));
     }
 
-    private IEnumerator ShowMessageRoutine(string message)
+    private IEnumerator ShowMessageRoutine(string message, float time)
     {
         codeText.text = message;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(time);
 
         UpdateCodeText();
         messageRoutine = null;
