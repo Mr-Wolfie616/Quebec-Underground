@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
   id: audioClip
   audioType: 0
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 11357052ff664204d9e323ee1551c1af, type: 3}
+  - {fileID: 8300000, guid: 460114acf53534847b950dab64b3b620, type: 3}
+  - {fileID: 8300000, guid: 001bb992c6aac6b4b9a5a5c1ed48d781, type: 3}
+  - {fileID: 8300000, guid: 66838673f10dd5a42b44149216be6d67, type: 3}
+  - {fileID: 8300000, guid: a891044fda9a4ff4b8f99e6cf68b3033, type: 3}
   loopByDefault: 0
-  playRandom: 0
+  playRandom: 1
   volumeMulti: 1
   pitchMin: 1
   pitchMax: 1
