@@ -2457,6 +2457,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1140338014113641533, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3941ce1320edc554fa41c834df067422, type: 2}
     - target: {fileID: 2154561182764115850, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.092
@@ -2513,6 +2517,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 6383797209404556846, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3941ce1320edc554fa41c834df067422, type: 2}
+    - target: {fileID: 6515567685417731764, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3941ce1320edc554fa41c834df067422, type: 2}
+    - target: {fileID: 7841421579849007869, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3941ce1320edc554fa41c834df067422, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36032,7 +36048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6723733144926689185, guid: 0e0fe1f79a7a4ac4f9df8da084271811, type: 3}
       propertyPath: crouchSpeed
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6723733144926689185, guid: 0e0fe1f79a7a4ac4f9df8da084271811, type: 3}
       propertyPath: sprintSpeed
