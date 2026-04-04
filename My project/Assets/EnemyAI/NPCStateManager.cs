@@ -62,17 +62,10 @@ public class NPCStateManager : FSM
 
         if (agent == null || animator == null) return;
 
-        float speed = agent.velocity.magnitude;
-        float targetAnimSpeed = GetAnimationSpeed(speed);
+        float normalisedVel = agent.velocity.magnitude / finalHuntSpeed;
+        normalisedVel = Mathf.Clamp01(normalisedVel);
 
-        animator.SetFloat("speed", targetAnimSpeed, 0.1f, Time.deltaTime);
-    }
-
-    private float GetAnimationSpeed(float speed)
-    {
-        if (speed >= huntSpeed) return 2f;
-        if (speed >= roamSpeed * 0.5f) return 1f;
-        return 0f;
+        animator.SetFloat("speed", normalisedVel, 0, 1f);
     }
 
     private IEnumerator TemporarilyDisableAgent()
