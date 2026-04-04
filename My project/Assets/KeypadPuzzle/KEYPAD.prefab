@@ -499,6 +499,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 5
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &2135087118873143536
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -540,6 +543,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 8
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &2636470832030205658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -586,6 +592,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 4
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &5475007867531656801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -627,6 +636,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 6
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &7216042921131329058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -668,6 +680,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 9
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &3948756101637410466
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -730,6 +745,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 1
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!1 &7382138174791356906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3556817346404478780, guid: 4177f70eb38ca8a499352c492e235c47, type: 3}
@@ -750,6 +768,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 3
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &4953290117555118224
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -791,6 +812,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 2
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &7461634778447076282
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -832,6 +856,9 @@ MonoBehaviour:
   parentKeypad: {fileID: 7978620426441740754}
   digit: 7
   digitText: {fileID: 0}
+  pressDistance: 0.008
+  pressInTime: 0.08
+  releaseTime: 0.14
 --- !u!65 &644495418581444682
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -36124,14 +36124,122 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 877175334459860986, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 877175334459860986, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 877175334459860986, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030208655849499456, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030208655849499456, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030208655849499456, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
     - target: {fileID: 2147398893803889400, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
       propertyPath: m_Name
       value: KEYPAD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083792964692052562, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083792964692052562, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083792964692052562, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413100248009161521, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413100248009161521, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413100248009161521, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563520125721380658, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563520125721380658, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563520125721380658, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824311103161630019, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824311103161630019, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824311103161630019, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096142846023441496, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096142846023441496, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096142846023441496, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
       objectReference: {fileID: 0}
     - target: {fileID: 7978620426441740754, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
       propertyPath: OnPuzzleCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1560174667}
+    - target: {fileID: 8153051928787013310, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153051928787013310, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153051928787013310, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166738139750149393, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressInTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166738139750149393, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: releaseTime
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166738139750149393, guid: 72ee600b868173b4eba56dcce430f1be, type: 3}
+      propertyPath: pressDistance
+      value: 0.008
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
