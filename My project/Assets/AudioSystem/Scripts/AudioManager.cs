@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -9,6 +10,9 @@ public class AudioManager : MonoBehaviour
     Dictionary<string, AudioDataSO> audioLookup = new Dictionary<string, AudioDataSO>();
 
     public static Action<Vector3, AudioDataSO> AlertEnemyEvent;
+
+    private AudioSource oneShotSource;
+    private Transform enemyTrans;
 
     void Awake()
     {
@@ -21,7 +25,14 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        if (oneShotSource == null)
+        {
+            oneShotSource = this.AddComponent<AudioSource>();
+        }
+
         LoadAudio();
+
+        enemyTrans = FindFirstObjectByType<NPCStateManager>().gameObject.transform;
 
         foreach (var clip in playOnWake) {
             PlaySound(clip.id, null, null);
@@ -80,12 +91,26 @@ public class AudioManager : MonoBehaviour
         data.lastPlayed = sequential;
         float pitch = UnityEngine.Random.Range(data.pitchMin, data.pitchMax);
 
+        if (pos == null && !loop)
+        {
+            oneShotSource.pitch = pitch;
+            oneShotSource.volume = data.volumeMulti;
+            oneShotSource.PlayOneShot(clip);
+            return;
+        }
+
         GameObject audioObj = new GameObject($"Audio_{id}");
         audioObj.transform.parent = transform;
 
         if (pos != null) audioObj.transform.position = pos.Value;
 
         AudioSource source = audioObj.AddComponent<AudioSource>();
+        if (data.followEnemy)
+        {
+            AudioFollowTarget aft = audioObj.AddComponent<AudioFollowTarget>();
+
+            aft.target = enemyTrans;
+        }
 
         source.clip = clip;
         source.loop = loop;

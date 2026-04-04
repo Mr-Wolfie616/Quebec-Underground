@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
   m_Name: SFX_creature_alert_1
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  id: SFX_creature_alert_1
+  id: SFX_creature_alert
   audioType: 0
   audioClips:
   - {fileID: 8300000, guid: ec4e9c9470492a343855c28a70f41905, type: 3}
   - {fileID: 8300000, guid: 257a9cac5125b154da225d38a69679c2, type: 3}
   loopByDefault: 0
   playRandom: 1
-  volumeMulti: 1
-  pitchMin: 1
-  pitchMax: 1
+  volumeMulti: 0.5
+  pitchMin: 0.9
+  pitchMax: 1.1
   overrideMixer: {fileID: 0}
+  followEnemy: 1
   alertEnemyOnPlay: 0
   alertRadius: 16
   alertPriority: 1
-  lastPlayed: -1
+  lastPlayed: 0

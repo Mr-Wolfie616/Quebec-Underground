@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
   m_Name: SFX_creature_idle_1
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  id: audioClip
+  id: SFX_creature_idle
   audioType: 0
   audioClips:
   - {fileID: 8300000, guid: 11357052ff664204d9e323ee1551c1af, type: 3}
@@ -22,11 +22,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a891044fda9a4ff4b8f99e6cf68b3033, type: 3}
   loopByDefault: 0
   playRandom: 1
-  volumeMulti: 1
-  pitchMin: 1
-  pitchMax: 1
+  volumeMulti: 0.5
+  pitchMin: 0.9
+  pitchMax: 1.1
   overrideMixer: {fileID: 0}
-  alertEnemyOnPlay: 1
+  followEnemy: 1
+  alertEnemyOnPlay: 0
   alertRadius: 16
   alertPriority: 1
-  lastPlayed: -1
+  lastPlayed: 0

@@ -30,6 +30,9 @@ public class RoamState : State
     public override void Enter()
     {
         Debug.Log($"NPC AI Entered Roam State");
+
+        AudioManager.Instance.PlaySound("SFX_creature_roam", npc.transform.position, null);
+
         ChooseNewRoamPoint();
         playerCheckTimer = 0f;
 

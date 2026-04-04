@@ -61,14 +61,14 @@ public class FPCharacterController:MonoBehaviour
     {
         while (true)
         {
-            AudioManager.Instance.PlaySound("SFX_Footsteps", transform.position, null);
+            AudioManager.Instance.PlaySound("SFX_Footsteps", null, null);
             yield return new WaitForSeconds(footstepInterval);
         }
     }
 
     void HandleFootsteps()
     {
-        bool isMoving = controller.velocity.magnitude > 0.1f && controller.isGrounded;
+        bool isMoving = controller.velocity.magnitude > 0.25f && controller.isGrounded;
 
         if (isMoving)
         {

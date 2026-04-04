@@ -31,6 +31,7 @@ public class AudioDataSO : ScriptableObject
     public AudioMixerGroup overrideMixer;
 
     [Header("Gameplay")]
+    public bool followEnemy = false;
     public bool alertEnemyOnPlay = true;
     public float alertRadius = 16f;
     [Range(0, 10)]

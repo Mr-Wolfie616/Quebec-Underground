@@ -35,7 +35,7 @@ public class HuntState : State
         npc.agent.speed = npc.huntSpeed;
         npc.agent.SetDestination(lastKnownPlayerPos);
 
-        // audio cue
+        AudioManager.Instance.PlaySound("SFX_creature_alert", npc.transform.position, null);
     }
 
     public override void Update()

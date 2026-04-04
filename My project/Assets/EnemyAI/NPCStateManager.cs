@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NPCStateManager : FSM
 {
+    public LayerMask permittedLayers;
     public Animator animator { get; private set; }
     //public NodePath nodePath;
     public NavMeshAgent agent { get; private set; }
@@ -18,6 +19,10 @@ public class NPCStateManager : FSM
     public float roamSpeed = 1.5f;
     public float huntSpeed = 3f;
     public float finalHuntSpeed = 5f;
+
+    public float randomSoundInterval = 30f; // +- 25%
+    private float speakInterval;
+    private float speakTime = 0f;
 
     public bool hasAudioTarget = false;
     public Vector3 currentAudioTarget;
@@ -35,6 +40,9 @@ public class NPCStateManager : FSM
     protected override void Start()
     {
         base.Start();
+
+        speakTime = 0f;
+        speakInterval = randomSoundInterval += Random.Range(-(randomSoundInterval / 25), (randomSoundInterval / 25));
 
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -62,10 +70,20 @@ public class NPCStateManager : FSM
 
         if (agent == null || animator == null) return;
 
-        float normalisedVel = agent.velocity.magnitude / finalHuntSpeed;
+        float normalisedVel = agent.velocity.magnitude / huntSpeed;
         normalisedVel = Mathf.Clamp01(normalisedVel);
 
         animator.SetFloat("speed", normalisedVel, 0, 1f);
+
+        speakTime += Time.deltaTime;
+
+        if (speakTime >= speakInterval)
+        {
+            speakTime = 0f;
+            AudioManager.Instance.PlaySound("SFX_creature_idle", transform.position, null);
+            speakInterval = randomSoundInterval += Random.Range(-(randomSoundInterval / 25), (randomSoundInterval / 25));
+        }
+
     }
 
     private IEnumerator TemporarilyDisableAgent()
@@ -87,7 +105,7 @@ public class NPCStateManager : FSM
 
     public bool RaycastFindPlayer(float detectionDist, bool throughWalls)
     {
-        Vector3 origin = transform.position;
+        Vector3 origin = transform.position + new Vector3(0,1,0);
         Vector3 aim = player.transform.position;
 
         Vector3 dir = aim - origin;
@@ -118,7 +136,7 @@ public class NPCStateManager : FSM
 
         Ray ray = new Ray(origin, dir);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, detectionDist))
+        if (Physics.Raycast(ray, out RaycastHit hit, detectionDist, permittedLayers))
         {
             if (hit.transform.GetComponent<FPCharacterController>())
             {
