@@ -9,11 +9,12 @@ public class RoamState : State
     private float playerCheckTimer;
 
     private float checkInterval = 2f;
-    private float detectionDist = 4f;
+    private float detectionDist = 2f;
 
     private float roamRadius = 6f;
 
     public float huntChance = 0.9f; // 90%
+    public float biasChance; // chance it tends to player
 
     private Vector3 lastPosition;
     private float stuckTimer;
@@ -48,6 +49,8 @@ public class RoamState : State
 
     public override void Update()
     {
+        if (npc.agent == null) return;
+
         playerCheckTimer += Time.deltaTime;
 
         if (playerCheckTimer >= checkInterval)
@@ -56,8 +59,11 @@ public class RoamState : State
 
             if (npc.RaycastFindPlayer(detectionDist, false))
             {
-                if (Random.value > huntChance) return; // chance it doesnt hunt
-                npc.TransitionToState(NPCState.Hunt);
+                if (Random.value <= huntChance)
+                {
+                    npc.TransitionToState(NPCState.Hunt);
+                    return;
+                }
             }
         }
 
@@ -85,27 +91,45 @@ public class RoamState : State
 
     private void ChooseNewRoamPoint()
     {
-        Vector3 forward = npc.transform.forward * Random.Range(2f, roamRadius);
-        Vector3 sideways = npc.transform.right * Random.Range(-2f, 2f);
+        int maxAttempts = 5;
 
-        Vector3 randomDir = forward + sideways;
-        Vector3 targetPos = npc.transform.position + randomDir;
-
-        if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, 4f, NavMesh.AllAreas))
+        for (int i = 0; i < maxAttempts; i++)
         {
-            npc.agent.SetDestination(hit.position);
-            return;
+            Vector3 origin = npc.transform.position;
+            Vector3 direction;
+
+            float distToPlayer = Vector3.Distance(origin, player.position);
+            float biasChance = Mathf.InverseLerp(10f, 50f, distToPlayer); // if 50 or more units away, 100% bias chance, if 10 or less, 0%. if too linear then ^2 or something
+
+            Debug.Log(biasChance.ToString());
+ 
+            bool goTowardPlayer = player != null && Random.value < biasChance;
+
+            if (goTowardPlayer)
+            {
+                Vector3 toPlayer = (player.position - origin).normalized;
+
+                Vector2 randomOffset = Random.insideUnitCircle * 2f;
+                Vector3 offset = new Vector3(randomOffset.x, 0, randomOffset.y);
+
+                direction = (toPlayer * Random.Range(2f, roamRadius)) + offset;
+            }
+            else
+            {
+                Vector2 circle = Random.insideUnitCircle * roamRadius;
+                direction = new Vector3(circle.x, 0, circle.y);
+            }
+
+            Vector3 targetPos = origin + direction;
+
+            if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, 4f, NavMesh.AllAreas))
+            {
+                npc.agent.SetDestination(hit.position);
+                return;
+            }
         }
 
-        Vector3 back = -npc.transform.forward * Random.Range(2f, roamRadius);
-        sideways = npc.transform.right * Random.Range(-2f, 2f);
-
-        randomDir = back + sideways;
-        targetPos = npc.transform.position + randomDir;
-
-        if (NavMesh.SamplePosition(targetPos, out hit, 4f, NavMesh.AllAreas))
-        {
-            npc.agent.SetDestination(hit.position);
-        }
+        NavMesh.SamplePosition(npc.transform.position, out NavMeshHit fallbackHit, 4f, NavMesh.AllAreas);
+        npc.agent.SetDestination(fallbackHit.position);
     }
 }

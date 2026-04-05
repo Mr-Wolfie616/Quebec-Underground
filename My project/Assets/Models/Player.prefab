@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6723733144926689185}
   - component: {fileID: 4216590998713164146}
   - component: {fileID: 1007810213572165179}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,18 +200,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47954023503e2084988389e62fa270d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterController
-  moveSpeed: 2.5
-  sprintSpeed: 5
-  backwardSpeed: 1.25
+  moveSpeed: 1.5
+  sprintSpeed: 2.5
+  backwardSpeed: 1
   lookSensitivity: 5
   CameraTransform: {fileID: 0}
   xRotation: 0
-  crouchSpeed: 2
+  crouchSpeed: 1
   player: {fileID: 0}
   crouchScale: {x: 0.3, y: 0.25, z: 0.3}
-  crouchFootstepInterval: 0.55
-  walkFootstepInterval: 0.35
-  runFootstepInterval: 0.3
+  crouchFootstepInterval: 0.6
+  walkFootstepInterval: 0.45
+  runFootstepInterval: 0.4
 --- !u!114 &4216590998713164146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 407
+    m_Bits: 8599
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8600000, guid: 1342cebbd6505f244900af1d8ca2cdc8, type: 2}
   m_TargetDisplay: 0

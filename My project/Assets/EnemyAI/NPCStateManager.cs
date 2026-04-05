@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR;
 
 public class NPCStateManager : FSM
 {
@@ -129,8 +130,6 @@ public class NPCStateManager : FSM
                 Debug.Log("Enemy Detect Player (through walls)");
                 return true;
             }
-
-            Debug.DrawRay(origin, dir * detectionDist, Color.black, 1.5f);
             return false;
         }
 
@@ -138,20 +137,23 @@ public class NPCStateManager : FSM
 
         if (Physics.Raycast(ray, out RaycastHit hit, detectionDist, permittedLayers))
         {
-            if (hit.transform.GetComponent<FPCharacterController>())
+            if (hit.transform.TryGetComponent<FPCharacterController>(out FPCharacterController controller))
             {
+                // 25% chance if crouching
+                if (controller.isCrouching)
+                {
+                    if (Random.value > 0.25f)
+                    {
+                        Debug.DrawRay(origin, dir * detectionDist, Color.cyan, 1.5f);
+                        Debug.Log("Enemy missed crouching player");
+                        return false;
+                    }
+                }
+
                 Debug.DrawRay(origin, dir * detectionDist, Color.yellow, 1.5f);
                 Debug.Log("Enemy Detect Player");
                 return true;
             }
-            else
-            {
-                Debug.DrawRay(origin, dir * detectionDist, Color.blue, 1.5f);
-            }
-        }
-        else
-        {
-            Debug.DrawRay(origin, dir * detectionDist, Color.black, 1.5f);
         }
         return false;
     }

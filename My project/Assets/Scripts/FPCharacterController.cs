@@ -26,6 +26,7 @@ public class FPCharacterController:MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Vector3 crouchScale = new Vector3 (0.5f, 0.25f, 0.5f);
     private Vector3 standardScale = new Vector3 (0.5f, 0.5f, 0.5f);
+    public bool isCrouching = false;
 
     [Header("Audio")]
     [SerializeField] private float crouchFootstepInterval = 0.01f;
@@ -90,6 +91,7 @@ public class FPCharacterController:MonoBehaviour
     void MovePlayer()
     {
         float currentSpeed;
+        bool isCrouching = input.Crouch;
 
         if (input.Move.y < 0)
         {

@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource oneShotSource;
     private Transform enemyTrans;
 
+    [SerializeField] private int maxAudioSources = 20;
+    private List<AudioSource> pooledSources = new List<AudioSource>();
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +33,7 @@ public class AudioManager : MonoBehaviour
         }
 
         LoadAudio();
+        CreateAudioPool();
 
         enemyTrans = FindFirstObjectByType<NPCStateManager>().gameObject.transform;
 
@@ -38,7 +41,35 @@ public class AudioManager : MonoBehaviour
             PlaySound(clip.id, null, null);
         }
     }
+    void CreateAudioPool()
+    {
+        for (int i = 0; i < maxAudioSources; i++)
+        {
+            GameObject obj = new GameObject($"AudioSource_{i}");
+            obj.transform.parent = transform;
 
+            AudioSource source = obj.AddComponent<AudioSource>();
+            pooledSources.Add(source);
+        }
+    }
+    AudioSource GetAvailableSource()
+    {
+        foreach (var source in pooledSources)
+        {
+            if (!source.isPlaying)
+            {
+                AudioFollowTarget follow = source.GetComponent<AudioFollowTarget>();
+                if (follow != null)
+                {
+                    Destroy(follow);
+                }
+
+                return source;
+            }
+        }
+
+        return pooledSources[0]; // if all busy, get oldest
+    }
     void LoadAudio()
     {
         AudioDataSO[] audioData = Resources.LoadAll<AudioDataSO>("AudioSOs");
@@ -99,18 +130,28 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        GameObject audioObj = new GameObject($"Audio_{id}");
-        audioObj.transform.parent = transform;
+        //GameObject audioObj = new GameObject($"Audio_{id}");
+        //audioObj.transform.parent = transform;
 
-        if (pos != null) audioObj.transform.position = pos.Value;
+        //if (pos != null) audioObj.transform.position = pos.Value;
 
-        AudioSource source = audioObj.AddComponent<AudioSource>();
+        //AudioSource source = audioObj.AddComponent<AudioSource>();
+
+        AudioSource source = GetAvailableSource();
+
         if (data.followEnemy)
         {
-            AudioFollowTarget aft = audioObj.AddComponent<AudioFollowTarget>();
+            AudioFollowTarget aft = source.GetComponent<AudioFollowTarget>();
+
+            if (aft == null)
+            {
+                aft = source.gameObject.AddComponent<AudioFollowTarget>();
+            }
 
             aft.target = enemyTrans;
         }
+
+        source.Stop();
 
         source.clip = clip;
         source.loop = loop;
@@ -118,16 +159,13 @@ public class AudioManager : MonoBehaviour
         source.volume = data.volumeMulti;
         source.spatialBlend = pos != null ? 1f : 0f;
 
+        source.transform.position = pos ?? transform.position;
+
         source.Play();
 
         if (pos != null && data.alertEnemyOnPlay)
         {
             AlertEnemyEvent?.Invoke(pos.Value, data);
-        }
-
-        if (!loop)
-        {
-            Destroy(audioObj, clip.length / pitch);
         }
     }
 }
