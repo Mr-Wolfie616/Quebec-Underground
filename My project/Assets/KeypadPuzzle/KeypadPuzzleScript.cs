@@ -27,6 +27,7 @@ public class KeypadPuzzleScript : MonoBehaviour
         if (!interactable) { return; }
 
         currentInput.Add(digit);
+        visualScript.SetColour(0);
 
         visualScript.UpdateCodeText();
 
@@ -47,14 +48,14 @@ public class KeypadPuzzleScript : MonoBehaviour
             if (currentInput[i] != puzzleData.solution[i])
             {
                 Debug.Log("CODE INCORRECT");
-                visualScript.StartMessage("X X X X", 2f);
+                visualScript.StartTimedMessage("X X X X", 2, 2f);
                 currentInput.Clear();
                 CheckAttempts();
                 return;
             }
         }
 
-        visualScript.StartMessage("GOOD", 2f);
+        visualScript.OverrideText("OPEN",1);
         interactable = false;
         //AudioManager.Instance.PlaySound(SFX_Keypad_Success);
         OnPuzzleCompleted?.Invoke();
@@ -74,13 +75,13 @@ public class KeypadPuzzleScript : MonoBehaviour
     {
         interactable = false;
 
-        //AudioManager.Instance.PlaySound(SFX_Keypad_Alert);
+        AudioManager.Instance.PlaySound("SFX_Keypad_Alert", transform.position, null);
 
         float timer = resetTime;
 
         while (timer > 0f)
         {
-            visualScript.codeText.text = Mathf.CeilToInt(timer).ToString();
+            visualScript.OverrideText(Mathf.CeilToInt(timer).ToString(), 2);
 
             timer -= Time.deltaTime;
             yield return null;
@@ -88,9 +89,9 @@ public class KeypadPuzzleScript : MonoBehaviour
 
         currentAttempts = 0;
         currentInput.Clear();
+        visualScript.SetColour(0);
         interactable = true;
 
-        visualScript.StartMessage("READY", 1f);
         visualScript.UpdateCodeText();
     }
 

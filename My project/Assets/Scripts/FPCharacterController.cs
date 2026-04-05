@@ -62,7 +62,7 @@ public class FPCharacterController:MonoBehaviour
     {
         while (true)
         {
-            AudioManager.Instance.PlaySound("SFX_Footsteps", null, null);
+            AudioManager.Instance.PlaySound("SFX_Footsteps", transform.position, null);
             yield return new WaitForSeconds(footstepInterval);
         }
     }

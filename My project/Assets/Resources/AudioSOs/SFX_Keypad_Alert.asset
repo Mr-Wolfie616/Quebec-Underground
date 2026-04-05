@@ -10,23 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
-  m_Name: sfx_KeypadPress
+  m_Name: SFX_Keypad_Alert
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  id: sfx_KeypadPress
+  id: SFX_Keypad_Alert
   audioType: 0
   audioClips:
-  - {fileID: 8300000, guid: 1c3819d49c014b840a70c6e4c2deddf7, type: 3}
-  - {fileID: 8300000, guid: 1fb4fe9016fc05841879608f906296f8, type: 3}
-  - {fileID: 8300000, guid: f4e6cedc3cde32a46a5c271860d472fd, type: 3}
-  - {fileID: 8300000, guid: 984df5e99c98bc644a849750974b1c3d, type: 3}
-  - {fileID: 8300000, guid: 521cc3ff4771190438449eeb5c39106a, type: 3}
+  - {fileID: 8300000, guid: 5134483ada663fd43a7481d6d45342e1, type: 3}
   loopByDefault: 0
-  playRandom: 1
+  playRandom: 0
   volumeMulti: 0.25
-  pitchMin: 0.5
+  pitchMin: 1
   pitchMax: 1
   overrideMixer: {fileID: 0}
+  followEnemy: 0
   alertEnemyOnPlay: 1
-  alertRadius: 1
-  alertPriority: 1
+  alertRadius: 50
+  alertPriority: 3
   lastPlayed: -1

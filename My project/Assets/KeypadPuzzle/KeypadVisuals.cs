@@ -10,6 +10,7 @@ public class KeypadVisuals : MonoBehaviour
 
     private Coroutine messageRoutine;
 
+    public Color[] colours;
     private void Awake()
     {
         puzzleScript = GetComponent<KeypadPuzzleScript>();
@@ -17,6 +18,7 @@ public class KeypadVisuals : MonoBehaviour
 
     public void UpdateCodeText()
     {
+        SetColour(0);
         int[] current = puzzleScript.GetCurrentAttempt();
         int totalLength = puzzleScript.puzzleData.solution.Length;
 
@@ -36,22 +38,34 @@ public class KeypadVisuals : MonoBehaviour
         codeText.text = display.ToString();
     }
 
-    public void StartMessage(string message, float time)
+    public void StartTimedMessage(string message, int colour, float time)
     {
         if (messageRoutine != null)
         {
             StopCoroutine(messageRoutine);
         }
 
-        messageRoutine = StartCoroutine(ShowMessageRoutine(message, time));
+        messageRoutine = StartCoroutine(ShowMessageRoutine(message, time, colour));
     }
 
-    private IEnumerator ShowMessageRoutine(string message, float time)
+    public void OverrideText(string message, int colour)
     {
+        SetColour(colour);
+        codeText.text = message;
+    }
+
+    public void SetColour(int colour)
+    {
+        codeText.color = colours[colour];
+    }
+
+    private IEnumerator ShowMessageRoutine(string message, float time, int colour)
+    {
+        SetColour(colour);
         codeText.text = message;
 
         yield return new WaitForSeconds(time);
-
+        
         UpdateCodeText();
         messageRoutine = null;
     }

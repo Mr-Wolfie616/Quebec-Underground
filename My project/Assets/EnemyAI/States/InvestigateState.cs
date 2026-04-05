@@ -24,7 +24,6 @@ public class InvestigateState : State
 
     private float targetDetDist = 5f;
 
-    private bool reachedTarget = false;
     public InvestigateState(NPCStateManager npc)
     {
         this.npc = npc;
@@ -38,7 +37,6 @@ public class InvestigateState : State
 
     public AudioDataSO GetAudioData()
     {
-        currentAudioData = npc.currentAudioData;
         return npc.currentAudioData;
     }
 
@@ -49,23 +47,46 @@ public class InvestigateState : State
 
     public override void Enter()
     {
-        string soundID = GetAudioData().id;
-        // play sound?
+        currentAudioData = GetAudioData();
+
+        if (currentAudioData == null)
+        {
+            Debug.LogWarning("No audio data for investigate state");
+            npc.TransitionToState(NPCState.Roam);
+            return;
+        }
+
+        string soundID = currentAudioData.id;
+
+        AudioManager.Instance.PlaySound("SFX_creature_alert", npc.transform.position, null);
+
         Debug.Log($"NPC AI Entered Investigate State | Target {soundID} at {npc.currentAudioTarget}");
 
         playerCheckTimer = 0f;
         waitTimer = 0f;
-        reachedTarget = false;
 
         npc.agent.isStopped = false;
         npc.agent.speed = npc.huntSpeed;
 
-        npc.agent.SetDestination(GetAudioTarget());
+        previousTarget = GetAudioTarget();
+        if (npc.SampleCorrectedPosition(previousTarget, out NavMeshHit hit))
+        {
+            npc.agent.SetDestination(hit.position);
+        }
     }
 
     public override void Update()
     {
-        npc.agent.SetDestination(GetAudioTarget());
+        Vector3 newTarget = GetAudioTarget();
+
+        if (npc.SampleCorrectedPosition(newTarget, out NavMeshHit hit))
+        {
+            if (hit.position != previousTarget)
+            {
+                previousTarget = hit.position;
+                npc.agent.SetDestination(hit.position);
+            }
+        }
 
         playerCheckTimer += Time.deltaTime;
 
@@ -73,21 +94,10 @@ public class InvestigateState : State
         {
             playerCheckTimer = 0f;
 
-            if (npc.RaycastFindPlayer(detectionDist, false))
-            {
-                Debug.Log("NPC FOUND PLAYER");
-                if (Random.value <= 0.75f)
-                {
-                    npc.TransitionToState(NPCState.Hunt);
-                }
-                return;
-            }
+            if (TryHuntPlayer(detectionDist, 0.6f)) return;
         }
 
-        if (!npc.agent.pathPending && npc.agent.remainingDistance <= npc.agent.stoppingDistance)
-        {
-            reachedTarget = true;
-        }
+        bool reachedTarget = !npc.agent.pathPending && npc.agent.pathStatus == NavMeshPathStatus.PathComplete && npc.agent.remainingDistance <= npc.agent.stoppingDistance;
 
         WaitAndSearch(reachedTarget);
     }
@@ -96,15 +106,7 @@ public class InvestigateState : State
     {
         if (reachedTarget)
         {
-            if (npc.RaycastFindPlayer(targetDetDist, false))
-            {
-                Debug.Log("NPC FOUND PLAYER");
-                if (Random.value <= 0.9f)
-                {
-                    npc.TransitionToState(NPCState.Hunt);
-                }
-                return;
-            }
+            if (TryHuntPlayer(targetDetDist, 0.9f)) return;
 
             waitTimer += Time.deltaTime;
 
@@ -112,26 +114,34 @@ public class InvestigateState : State
             {
                 Debug.Log("NPC finished investigating");
 
-                if (npc.RaycastFindPlayer(targetDetDist, false))
-                {
-                    Debug.Log("NPC FOUND PLAYER");
-                    if (Random.value <= 0.9f)
-                    {
-                        npc.TransitionToState(NPCState.Hunt);
-                    }
-                    return;
-                }
+                if (TryHuntPlayer(targetDetDist, 0.9f)) return;
 
                 ClearAudioTarget();
 
                 if (Random.value < 0.4f) npc.TransitionToState(NPCState.Idle);
                 else npc.TransitionToState(NPCState.Roam);
+                return;
             }
         }
     }
 
+    private bool TryHuntPlayer(float dist, float chance)
+    {
+        if (!npc.RaycastFindPlayer(dist, false)) return false;
+
+        Debug.Log("NPC FOUND PLAYER");
+
+        if (Random.value <= chance)
+        {
+            npc.TransitionToState(NPCState.Hunt);
+        }
+
+        return true;
+    }
+
     public override void Exit()
     {
-        //play sound
+        waitTimer = 0f;
+        playerCheckTimer = 0f;
     }
 }

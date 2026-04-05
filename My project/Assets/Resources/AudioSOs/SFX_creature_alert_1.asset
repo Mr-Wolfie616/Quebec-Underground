@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 257a9cac5125b154da225d38a69679c2, type: 3}
   loopByDefault: 0
   playRandom: 1
-  volumeMulti: 0.5
+  volumeMulti: 0.55
   pitchMin: 0.9
   pitchMax: 1.1
   overrideMixer: {fileID: 0}

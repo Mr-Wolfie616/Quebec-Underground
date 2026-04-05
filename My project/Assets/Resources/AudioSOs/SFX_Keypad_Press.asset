@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
-  m_Name: footsteps
+  m_Name: SFX_Keypad_Press
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  id: SFX_Footsteps
+  id: sfx_KeypadPress
   audioType: 0
   audioClips:
-  - {fileID: 8300000, guid: 310770879774b474a89446a60c96e3d7, type: 3}
-  - {fileID: 8300000, guid: fb3abd482e149154caea6a8e733622de, type: 3}
-  - {fileID: 8300000, guid: 142b431d65bf9564e9f060461f732cad, type: 3}
+  - {fileID: 8300000, guid: 1c3819d49c014b840a70c6e4c2deddf7, type: 3}
+  - {fileID: 8300000, guid: 1fb4fe9016fc05841879608f906296f8, type: 3}
+  - {fileID: 8300000, guid: f4e6cedc3cde32a46a5c271860d472fd, type: 3}
+  - {fileID: 8300000, guid: 984df5e99c98bc644a849750974b1c3d, type: 3}
+  - {fileID: 8300000, guid: 521cc3ff4771190438449eeb5c39106a, type: 3}
   loopByDefault: 0
   playRandom: 1
-  volumeMulti: 0.3
+  volumeMulti: 0.2
   pitchMin: 0.5
   pitchMax: 1
   overrideMixer: {fileID: 0}
   followEnemy: 0
   alertEnemyOnPlay: 1
-  alertRadius: 1
-  alertPriority: 0
+  alertRadius: 4
+  alertPriority: 1
   lastPlayed: 2

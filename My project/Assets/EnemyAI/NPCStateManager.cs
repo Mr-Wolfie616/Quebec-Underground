@@ -158,6 +158,12 @@ public class NPCStateManager : FSM
         return false;
     }
 
+    public bool SampleCorrectedPosition(Vector3 pos, out NavMeshHit hit)
+    {
+        Vector3 floorCorrected = new Vector3(pos.x, pos.y - 1, pos.z);
+        return NavMesh.SamplePosition(floorCorrected, out hit, 1f, NavMesh.AllAreas);
+    }
+
     public void HearAudio(Vector3 pos, AudioDataSO data)
     {
         float newDist = Vector3.Distance(transform.position, pos);
