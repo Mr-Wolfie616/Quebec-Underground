@@ -29,9 +29,9 @@ public class FPCharacterController:MonoBehaviour
     public bool isCrouching = false;
 
     [Header("Audio")]
-    [SerializeField] private float crouchFootstepInterval = 0.01f;
-    [SerializeField] private float walkFootstepInterval = 0.05f;
-    [SerializeField] private float runFootstepInterval = 0.1f;
+    [SerializeField] private float crouchFootstepInterval;
+    [SerializeField] private float walkFootstepInterval;
+    [SerializeField] private float runFootstepInterval;
     private float footstepInterval = 0f;
 
     private Coroutine footstepRoutine;
@@ -69,7 +69,7 @@ public class FPCharacterController:MonoBehaviour
 
     void HandleFootsteps()
     {
-        bool isMoving = controller.velocity.magnitude > 0.25f && controller.isGrounded;
+        bool isMoving = input.Move.sqrMagnitude > 0.01f && controller.isGrounded;
 
         if (isMoving)
         {

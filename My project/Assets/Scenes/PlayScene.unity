@@ -2489,6 +2489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 6918155806304498620, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
+      propertyPath: huntSpeed
+      value: 4.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
