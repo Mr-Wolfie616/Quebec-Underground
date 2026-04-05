@@ -8,11 +8,11 @@ public class HuntState : State
     private Transform player;
 
     private float playerCheckTimer;
-    private float detectionDist = 12f;
+    private float detectionDist = 5f;
 
     private float checkTime = 0f;
-    private float checkInterval = 1f;
-    private float loseTime = 6f;
+    private float checkInterval = 2f;
+    private float loseTime = 3f;
 
     private Vector3 lastKnownPlayerPos;
 
