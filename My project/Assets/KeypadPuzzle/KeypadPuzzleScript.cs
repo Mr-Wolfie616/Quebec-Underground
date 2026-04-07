@@ -48,6 +48,10 @@ public class KeypadPuzzleScript : MonoBehaviour
             if (currentInput[i] != puzzleData.solution[i])
             {
                 Debug.Log("CODE INCORRECT");
+                if (currentAttempts != puzzleData.maxAttempts)
+                {
+                    AudioManager.Instance.PlaySound("keypadError", transform.position, null);
+                }
                 visualScript.StartTimedMessage("X X X X", 2, 2f);
                 currentInput.Clear();
                 CheckAttempts();
@@ -57,7 +61,7 @@ public class KeypadPuzzleScript : MonoBehaviour
 
         visualScript.OverrideText("OPEN",1);
         interactable = false;
-        //AudioManager.Instance.PlaySound(SFX_Keypad_Success);
+        AudioManager.Instance.PlaySound("keypadWin", transform.position, null);
         OnPuzzleCompleted?.Invoke();
         Debug.Log("CODE CORRECT!!!!");
     }
@@ -75,7 +79,7 @@ public class KeypadPuzzleScript : MonoBehaviour
     {
         interactable = false;
 
-        AudioManager.Instance.PlaySound("SFX_Keypad_Alert", transform.position, null);
+        AudioManager.Instance.PlaySound("keybad", transform.position, null);
 
         float timer = resetTime;
 
