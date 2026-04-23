@@ -348,8 +348,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quebec Underground
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40b558b8793993a4aa15c3d967b934b1, type: 2}
+  m_sharedMaterial: {fileID: -6177440809916360006, guid: 40b558b8793993a4aa15c3d967b934b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -597,8 +597,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40b558b8793993a4aa15c3d967b934b1, type: 2}
+  m_sharedMaterial: {fileID: -6177440809916360006, guid: 40b558b8793993a4aa15c3d967b934b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2612,8 +2612,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40b558b8793993a4aa15c3d967b934b1, type: 2}
+  m_sharedMaterial: {fileID: -6177440809916360006, guid: 40b558b8793993a4aa15c3d967b934b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3362,6 +3362,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7f8b06cadea1f438264ec37a324861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  Player: {fileID: 0}
+  Credits: {fileID: 0}
+  CameraTransform: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

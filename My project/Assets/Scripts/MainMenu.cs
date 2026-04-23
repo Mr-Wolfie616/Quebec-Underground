@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public Transform Player;
+    public Transform Credits;
+    public Transform CameraTransform;
 
     void Awake()
     {
@@ -13,7 +16,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
     }
     
     public void ExitGame()
@@ -24,6 +27,20 @@ public class MainMenu : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        SceneManager.LoadScene(0);
+    }
+
+    public void Credit()
+    {
+        CameraTransform.SetParent(Credits);
+        CameraTransform.localPosition = Vector3.zero;
+        CameraTransform.localRotation = Quaternion.identity;
+    }
+
+     public void Back()
+    {
+        CameraTransform.SetParent(Player);
+        CameraTransform.localPosition = Vector3.zero;
+        CameraTransform.localRotation = Quaternion.identity;
     }
 }
