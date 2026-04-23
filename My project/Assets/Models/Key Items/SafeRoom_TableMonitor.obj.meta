@@ -3,12 +3,7 @@ guid: 32c3aeb5f9292aa4aab3d31cc569de84
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: SafeRoom_TableMonitorMat
-    second: {fileID: 2100000, guid: f0d21d8fc4847ed46a02fb802c06cc88, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

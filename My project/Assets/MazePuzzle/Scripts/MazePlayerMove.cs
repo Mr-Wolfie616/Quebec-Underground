@@ -49,6 +49,6 @@ public class MazePlayerMove : MonoBehaviour
     {
         completed = true;
         OnMazeComplete?.Invoke();
-        PuzzleManager.PuzzleManagerIncrease?.Invoke();
+        PuzzleManager.PuzzleManagerIncrease?.Invoke(3);
     }
 }

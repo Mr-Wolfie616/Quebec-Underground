@@ -80,7 +80,7 @@ public class RoamState : State
 
             if (movedDistance < moveThreshold && npc.agent.hasPath && npc.agent.remainingDistance > npc.agent.stoppingDistance)
             {
-                Debug.Log("NPC stuck");
+                //Debug.Log("NPC stuck");
                 ChooseNewRoamPoint();
             }
 
