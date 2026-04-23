@@ -8,7 +8,7 @@ public class PuzzleManager : MonoBehaviour
 {
     public int totalPuzzles = 3;
     public static int puzzlesCompleted = 0;
-    public static Action<int> PuzzleManagerIncrease;
+    public static Action<int, Vector3> PuzzleManagerIncrease;
     public UnityEvent AllPuzzlesCompleted;
     public TextMeshProUGUI text;
     public List<int> completedPuzzles = new List<int>();
@@ -27,7 +27,7 @@ public class PuzzleManager : MonoBehaviour
         PuzzleManagerIncrease -= HandlePuzzleCompleted;
     }
 
-    public void HandlePuzzleCompleted(int id)
+    public void HandlePuzzleCompleted(int id, Vector3 pos)
     {
         if (completedPuzzles.Contains(id))  {
             Debug.Log("duplicate");
@@ -35,6 +35,7 @@ public class PuzzleManager : MonoBehaviour
         }
         else{
             completedPuzzles.Add(id);
+            AudioManager.Instance.PlaySound("keypadWin", pos, null);
         }
 
         puzzlesCompleted++;
