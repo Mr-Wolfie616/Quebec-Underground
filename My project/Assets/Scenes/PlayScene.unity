@@ -3876,7 +3876,7 @@ GameObject:
   - component: {fileID: 101629056}
   - component: {fileID: 101629055}
   m_Layer: 0
-  m_Name: Decal Projector (3)
+  m_Name: 1636 Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3894,7 +3894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: ee57b5be49e1b874aa972983fbff3448, type: 2}
+  m_Material: {fileID: 2100000, guid: a69c0ec4e266c504b8d5b1a42bed72fb, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_StartAngleFade: 180
@@ -24076,7 +24076,7 @@ GameObject:
   - component: {fileID: 665568721}
   - component: {fileID: 665568720}
   m_Layer: 0
-  m_Name: Decal Projector (1)
+  m_Name: Snow Flake Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24094,7 +24094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: 910932b538840b544a810fa0762acef4, type: 2}
+  m_Material: {fileID: 2100000, guid: 56e66ae6879b3be479b95a24e220074a, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_StartAngleFade: 180
@@ -40037,7 +40037,7 @@ GameObject:
   - component: {fileID: 1045610983}
   - component: {fileID: 1045610982}
   m_Layer: 0
-  m_Name: Decal Projector
+  m_Name: Owl Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40055,7 +40055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: 910932b538840b544a810fa0762acef4, type: 2}
+  m_Material: {fileID: 2100000, guid: 25a030f37a48cdb46a3f98f368930b4e, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_StartAngleFade: 180
@@ -53997,7 +53997,7 @@ GameObject:
   - component: {fileID: 1380873627}
   - component: {fileID: 1380873626}
   m_Layer: 0
-  m_Name: Decal Projector (2)
+  m_Name: Bull Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54015,7 +54015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: 910932b538840b544a810fa0762acef4, type: 2}
+  m_Material: {fileID: 2100000, guid: 45dcd92c9a1079b49bf4910a13fac336, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_StartAngleFade: 180
