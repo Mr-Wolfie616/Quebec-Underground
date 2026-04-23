@@ -10,6 +10,8 @@ public class KeypadVisuals : MonoBehaviour
 
     private Coroutine messageRoutine;
 
+    public bool showNumbers = true;
+
     public Color[] colours;
     private void Awake()
     {
@@ -27,7 +29,14 @@ public class KeypadVisuals : MonoBehaviour
         for (int i = 0; i < totalLength; i++)
         {
             if (i < current.Length)
-                display.Append(current[i]);
+                if (showNumbers)
+                {
+                    display.Append(current[i]);
+                }
+                else 
+                {
+                    display.Append("*");
+                }
             else
                 display.Append("-");
 
