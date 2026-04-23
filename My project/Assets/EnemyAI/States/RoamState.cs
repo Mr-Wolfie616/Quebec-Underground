@@ -101,7 +101,7 @@ public class RoamState : State
             float distToPlayer = Vector3.Distance(origin, player.position);
             float biasChance = Mathf.InverseLerp(5f, 40f, distToPlayer); // if 40 or more units away, 100% bias chance, if 5 or less, 0%. if too linear then ^2 or something
 
-            Debug.Log(biasChance.ToString());
+            //Debug.Log(biasChance.ToString());
  
             bool goTowardPlayer = player != null && Random.value < biasChance;
 

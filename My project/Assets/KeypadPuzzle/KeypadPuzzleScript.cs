@@ -63,6 +63,7 @@ public class KeypadPuzzleScript : MonoBehaviour
         interactable = false;
         AudioManager.Instance.PlaySound("keypadWin", transform.position, null);
         OnPuzzleCompleted?.Invoke();
+        PuzzleManager.PuzzleManagerIncrease?.Invoke();
         Debug.Log("CODE CORRECT!!!!");
     }
 
