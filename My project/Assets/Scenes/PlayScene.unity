@@ -6665,11 +6665,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6918155806304498620, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: huntSpeed
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6918155806304498620, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: roamSpeed
-      value: 4.5
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918155806304498620, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
+      propertyPath: finalHuntSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
