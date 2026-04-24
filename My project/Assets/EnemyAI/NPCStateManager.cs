@@ -78,12 +78,7 @@ public class NPCStateManager : FSM
 
     private void DoFootStep(float intvl)
     {
-        //Debug.Log(intvl);
         feetTime += Time.deltaTime;
-
-        if (intvl >= 0.8f) {
-            return;
-        }
 
         if (feetTime >= intvl) {
             AudioManager.Instance.PlaySound("SFX_EnemyFootsteps", transform.position, null);
@@ -109,7 +104,16 @@ public class NPCStateManager : FSM
         float normalisedVel = agent.velocity.magnitude / huntSpeed;
         normalisedVel = Mathf.Clamp01(normalisedVel);
 
-        DoFootStep(1 - normalisedVel);
+        float interval = Mathf.Lerp(0.5f, 0.15f, normalisedVel);
+
+        if (agent.velocity.magnitude > 0.1f)
+        {
+            DoFootStep(interval);
+        }
+        else
+        {
+            feetTime = 0f;
+        }
 
         animator.SetFloat("speed", normalisedVel, 0, 1f);
 
@@ -150,9 +154,7 @@ public class NPCStateManager : FSM
         float distance = dir.magnitude;
         dir.Normalize();
 
-        var hide = player.GetComponentInParent<PlayerHideScript>();
-
-        if (hide != null && hide.isHiding)
+        if (phs != null && phs.isHiding)
         {
             Debug.DrawRay(origin, dir * detectionDist, Color.purple, 1.5f);
             Debug.Log("Enemy No Detect Hiding Player");
@@ -197,7 +199,7 @@ public class NPCStateManager : FSM
 
     public bool SampleCorrectedPosition(Vector3 pos, out NavMeshHit hit)
     {
-        Vector3 floorCorrected = new Vector3(pos.x, pos.y - 1, pos.z);
+        Vector3 floorCorrected = new Vector3(pos.x, pos.y - 0.5f, pos.z);
         return NavMesh.SamplePosition(floorCorrected, out hit, 1f, NavMesh.AllAreas);
     }
 

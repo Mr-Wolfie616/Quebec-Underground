@@ -22,12 +22,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 521cc3ff4771190438449eeb5c39106a, type: 3}
   loopByDefault: 0
   playRandom: 1
-  volumeMulti: 0.2
+  volumeMulti: 0.175
   pitchMin: 0.5
   pitchMax: 1
   overrideMixer: {fileID: 0}
   followEnemy: 0
   alertEnemyOnPlay: 1
-  alertRadius: 4
+  alertRadius: 3
   alertPriority: 1
-  lastPlayed: 2
+  lastPlayed: 0

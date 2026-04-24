@@ -8,11 +8,11 @@ public class HuntState : State
     private Transform player;
 
     private float playerCheckTimer;
-    private float detectionDist = 5f;
+    private float detectionDist = 8f;
 
     private float checkTime = 0f;
     private float checkInterval = 2f;
-    private float loseTime = 3f;
+    private float loseTime = 4f;
 
     private Vector3 lastKnownPlayerPos;
 
@@ -41,28 +41,21 @@ public class HuntState : State
     public override void Update()
     {
         playerCheckTimer += Time.deltaTime;
+        checkTime += Time.deltaTime;
 
         if (playerCheckTimer >= checkInterval)
         {
             playerCheckTimer = 0f;
 
-            bool canSeePlayer = npc.RaycastFindPlayer(detectionDist, true);
+            bool canSeePlayer = npc.RaycastFindPlayer(detectionDist, false);
 
             if (canSeePlayer)
             {
                 Debug.Log("NPC Hunt Sees Player");
                 checkTime = 0f;
-                if (Vector3.Distance(lastKnownPlayerPos, player.position) > 1f)
-                {
-                    lastKnownPlayerPos = player.position;
-                    npc.agent.SetDestination(lastKnownPlayerPos);
-                }
-            }
 
-            else
-            {
-                checkTime += Time.deltaTime;
-                Debug.Log($"NPC Hunt CANT See Player {loseTime}");
+                lastKnownPlayerPos = player.position - new Vector3(0, -0.5f, 0);
+                npc.agent.SetDestination(lastKnownPlayerPos);
             }
 
             // Fully lost player

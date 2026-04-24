@@ -18,10 +18,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9b0523c98429474094016ac666ba47a, type: 3}
   loopByDefault: 1
   playRandom: 0
-  volumeMulti: 0.25
+  volumeMulti: 0.35
   pitchMin: 1
   pitchMax: 1
   overrideMixer: {fileID: 0}
+  followEnemy: 0
   alertEnemyOnPlay: 0
   alertRadius: 16
   alertPriority: 1
