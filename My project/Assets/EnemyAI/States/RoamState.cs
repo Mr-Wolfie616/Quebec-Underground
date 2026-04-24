@@ -32,6 +32,8 @@ public class RoamState : State
     {
         Debug.Log($"NPC AI Entered Roam State");
 
+        npc.footstepInterval = 0.325f;
+
         AudioManager.Instance.PlaySound("SFX_creature_roam", npc.transform.position, null);
 
         ChooseNewRoamPoint();
@@ -99,7 +101,7 @@ public class RoamState : State
             Vector3 direction;
 
             float distToPlayer = Vector3.Distance(origin, player.position);
-            float biasChance = Mathf.InverseLerp(5f, 40f, distToPlayer); // if 40 or more units away, 100% bias chance, if 5 or less, 0%. if too linear then ^2 or something
+            float biasChance = Mathf.InverseLerp(5f, 30f, distToPlayer); // if 40 or more units away, 100% bias chance, if 5 or less, 0%. if too linear then ^2 or something
 
             //Debug.Log(biasChance.ToString());
  

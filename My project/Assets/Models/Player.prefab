@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6723733144926689185}
   - component: {fileID: 4216590998713164146}
   - component: {fileID: 1007810213572165179}
+  - component: {fileID: 8068918853671637342}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -209,6 +210,7 @@ MonoBehaviour:
   crouchSpeed: 1
   player: {fileID: 0}
   crouchScale: {x: 0.3, y: 0.25, z: 0.3}
+  isCrouching: 0
   crouchFootstepInterval: 0.6
   walkFootstepInterval: 0.45
   runFootstepInterval: 0.4
@@ -239,9 +241,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterInteraction
   interactlayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   Camera: {fileID: 5531649479095752386}
   range: 3
+  crosshair: {fileID: 0}
+--- !u!114 &8068918853671637342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201153779570129920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501b191e77ff6654f97155f1b7350d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EsacpeTrigger
 --- !u!1 &2136123706098894114
 GameObject:
   m_ObjectHideFlags: 0

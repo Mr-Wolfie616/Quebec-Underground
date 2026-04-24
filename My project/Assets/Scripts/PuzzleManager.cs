@@ -15,6 +15,8 @@ public class PuzzleManager : MonoBehaviour
 
     private void Awake()
     {
+        completedPuzzles.Clear();
+        puzzlesCompleted = 0;
         text.text = $"{puzzlesCompleted}/{totalPuzzles}";
     }
     private void OnEnable()

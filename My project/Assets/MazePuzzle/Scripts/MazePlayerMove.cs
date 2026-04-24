@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class MazePlayerMove : MonoBehaviour
 {
+    public Transform audioSrc;
     public LayerMask boundsLayer, wallLayer, winLayer;
     private Vector3 lastPos;
     public float tileDistance = 0.5f;
@@ -49,6 +50,6 @@ public class MazePlayerMove : MonoBehaviour
     {
         completed = true;
         OnMazeComplete?.Invoke();
-        PuzzleManager.PuzzleManagerIncrease?.Invoke(3, transform.position);
+        PuzzleManager.PuzzleManagerIncrease?.Invoke(3, audioSrc.position);
     }
 }

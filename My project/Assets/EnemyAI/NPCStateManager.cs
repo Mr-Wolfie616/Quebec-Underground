@@ -24,11 +24,14 @@ public class NPCStateManager : FSM
     public float randomSoundInterval = 30f; // +- 25%
     private float speakInterval;
     private float speakTime = 0f;
+    private float feetTime = 0f;
 
     public bool hasAudioTarget = false;
     public Vector3 currentAudioTarget;
     public AudioDataSO currentAudioData;
     private Vector3 newAudioTarget;
+
+    public float footstepInterval;
 
     private void OnEnable()
     {
@@ -65,6 +68,21 @@ public class NPCStateManager : FSM
         TransitionToState(NPCState.Idle);
     }
 
+    private void DoFootStep(float intvl)
+    {
+        Debug.Log(intvl);
+        feetTime += Time.deltaTime;
+
+        if (intvl >= 0.8f) {
+            return;
+        }
+
+        if (feetTime >= intvl) {
+            AudioManager.Instance.PlaySound("SFX_EnemyFootsteps", transform.position, null);
+            feetTime = 0f;
+        }
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -73,6 +91,8 @@ public class NPCStateManager : FSM
 
         float normalisedVel = agent.velocity.magnitude / huntSpeed;
         normalisedVel = Mathf.Clamp01(normalisedVel);
+
+        DoFootStep(1 - normalisedVel);
 
         animator.SetFloat("speed", normalisedVel, 0, 1f);
 
