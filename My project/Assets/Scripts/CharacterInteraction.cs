@@ -9,6 +9,7 @@ public class CharacterInteraction : MonoBehaviour
     [SerializeField] private Transform Camera;
     [SerializeField] private float range = 3f;
 
+    public GameObject crosshair;
     private InputReader input;
     FPCharacterController controller;
 
@@ -31,6 +32,11 @@ public class CharacterInteraction : MonoBehaviour
 
             if (interactable != null)
             {
+                if (crosshair != null)
+                {
+                    crosshair.SetActive(true);
+                }
+
                 if (input.InteractPressed)
                 {
                     interactable.Interact();
@@ -39,6 +45,21 @@ public class CharacterInteraction : MonoBehaviour
                 {
                     interactable.Press();
                 }
+            }
+
+            else
+            {
+                if (crosshair != null)
+                {
+                    crosshair.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            if (crosshair != null)
+            {
+                crosshair.SetActive(false);
             }
         }
     } 

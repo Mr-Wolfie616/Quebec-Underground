@@ -52,7 +52,8 @@ public class KeypadPuzzleScript : MonoBehaviour
                 {
                     AudioManager.Instance.PlaySound("keypadError", transform.position, null);
                 }
-                visualScript.StartTimedMessage("X X X X", 2, 2f);
+                string xString = string.Join(" ", new string('X', puzzleData.solution.Length).ToCharArray());
+                visualScript.StartTimedMessage(xString, 2, 2f);
                 currentInput.Clear();
                 CheckAttempts();
                 return;
@@ -63,6 +64,7 @@ public class KeypadPuzzleScript : MonoBehaviour
         interactable = false;
         AudioManager.Instance.PlaySound("keypadWin", transform.position, null);
         OnPuzzleCompleted?.Invoke();
+        //PuzzleManager.PuzzleManagerIncrease?.Invoke();
         Debug.Log("CODE CORRECT!!!!");
     }
 

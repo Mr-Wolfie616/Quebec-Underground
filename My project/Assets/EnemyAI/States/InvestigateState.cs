@@ -49,6 +49,8 @@ public class InvestigateState : State
     {
         currentAudioData = GetAudioData();
 
+        npc.footstepInterval = 0.25f;
+
         if (currentAudioData == null)
         {
             Debug.LogWarning("No audio data for investigate state");
