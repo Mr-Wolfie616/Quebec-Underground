@@ -61,6 +61,7 @@ public class HuntState : State
 
             else
             {
+                checkTime += Time.deltaTime;
                 Debug.Log($"NPC Hunt CANT See Player {loseTime}");
             }
 
