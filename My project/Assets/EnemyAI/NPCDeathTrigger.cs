@@ -8,7 +8,7 @@ public class NPCDeathTrigger : MonoBehaviour
     {
         if (other.TryGetComponent<FPCharacterController>(out var controller))
         {
-            SceneManager.LoadScene("YouDiedScene"); // really shit
+            SceneManager.LoadScene("YouDiedScene"); 
         }
     }
 }

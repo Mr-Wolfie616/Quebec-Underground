@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.XR;
@@ -11,6 +12,8 @@ public class NPCStateManager : FSM
     //public NodePath nodePath;
     public NavMeshAgent agent { get; private set; }
     public Rigidbody rb { get; private set; }
+
+    public Collider deathCol { get; private set; }
 
     public Transform player;
 
@@ -33,6 +36,8 @@ public class NPCStateManager : FSM
 
     public float footstepInterval;
 
+    private PlayerHideScript phs;
+
     private void OnEnable()
     {
         AudioManager.AlertEnemyEvent += HearAudio;    
@@ -51,14 +56,18 @@ public class NPCStateManager : FSM
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        deathCol = GetComponent<Collider>();
 
         if (player == null)
         {
             player = FindFirstObjectByType<FPCharacterController>().transform;
         }
 
+        phs = player.gameObject.GetComponent<PlayerHideScript>();
+
         if (agent == null) Debug.LogWarning("No NavMeshAgent found on NPCStateManager!");
         if (rb == null) Debug.LogWarning("No Rigidbody found on NPCStateManager!");
+        if (phs == null) Debug.LogWarning("No PHS found on Player!");
 
         states[NPCState.Idle] = new IdleState(this);
         states[NPCState.Roam] = new RoamState(this);
@@ -70,7 +79,7 @@ public class NPCStateManager : FSM
 
     private void DoFootStep(float intvl)
     {
-        Debug.Log(intvl);
+        //Debug.Log(intvl);
         feetTime += Time.deltaTime;
 
         if (intvl >= 0.8f) {
@@ -88,6 +97,15 @@ public class NPCStateManager : FSM
         base.Update();
 
         if (agent == null || animator == null) return;
+
+        if (phs.isHiding && deathCol != null)
+        {
+            deathCol.enabled = false;
+        }
+        else
+        {
+            deathCol.enabled = true;
+        }
 
         float normalisedVel = agent.velocity.magnitude / huntSpeed;
         normalisedVel = Mathf.Clamp01(normalisedVel);

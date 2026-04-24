@@ -2,21 +2,21 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HuntState : State
+public class FinalChaseState : State
 {
     private NPCStateManager npc;
     private Transform player;
 
     private float playerCheckTimer;
-    private float detectionDist = 5f;
+    private float detectionDist = 10f;
 
     private float checkTime = 0f;
-    private float checkInterval = 2f;
-    private float loseTime = 3f;
+    private float checkInterval = 3f;
+    private float loseTime = 6f;
 
     private Vector3 lastKnownPlayerPos;
 
-    public HuntState(NPCStateManager npc)
+    public FinalChaseState(NPCStateManager npc)
     {
         this.npc = npc;
         player = npc.player;
@@ -32,7 +32,7 @@ public class HuntState : State
         lastKnownPlayerPos = player.position;
 
         npc.agent.isStopped = false;
-        npc.agent.speed = npc.huntSpeed;
+        npc.agent.speed = npc.finalHuntSpeed;
         npc.agent.SetDestination(lastKnownPlayerPos);
 
         AudioManager.Instance.PlaySound("SFX_creature_alert", npc.transform.position, null);
@@ -61,7 +61,8 @@ public class HuntState : State
 
             else
             {
-                Debug.Log($"NPC Hunt CANT See Player {loseTime}");
+                Debug.Log("NPC Hunt CANT See Player");
+                checkTime += Time.deltaTime;
             }
 
             // Fully lost player
