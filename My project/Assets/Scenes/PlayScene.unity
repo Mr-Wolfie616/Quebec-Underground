@@ -32101,6 +32101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tunnel_Straight_Hide
       objectReference: {fileID: 0}
+    - target: {fileID: 1403160874917511278, guid: 7970c6ba143413f48971e3a95d56b158, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.007
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

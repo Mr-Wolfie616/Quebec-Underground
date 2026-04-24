@@ -7,7 +7,7 @@ public class PlayerHideScript : MonoBehaviour
     {
         if (other.CompareTag("HideTrigger"))
         {
-            Debug.Log("PLAYER HIDIGN!!!!!");
+            Debug.Log("PLAYER HIDING!!!!!");
             isHiding = true;
         }
     }
@@ -15,7 +15,7 @@ public class PlayerHideScript : MonoBehaviour
     {
         if (other.CompareTag("HideTrigger"))
         {
-            Debug.Log("PLAYER NO LONGER HIDIGN!!!!!");
+            Debug.Log("PLAYER NO LONGER HIDING!!!!!");
             isHiding = false;
         }
     }

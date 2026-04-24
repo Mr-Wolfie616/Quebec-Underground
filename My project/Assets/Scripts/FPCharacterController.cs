@@ -107,7 +107,6 @@ public class FPCharacterController:MonoBehaviour
         {
             currentSpeed = crouchSpeed;
             footstepInterval = crouchFootstepInterval;
-            //Debug.Log("Player Hidden");
         }
         else
         {
@@ -118,7 +117,6 @@ public class FPCharacterController:MonoBehaviour
         if (input.Crouch || playerHide.isHiding)
         {
             transform.localScale = crouchScale;
-            //Debug.Log("Player Hidden 1");
         }
         else
         {
