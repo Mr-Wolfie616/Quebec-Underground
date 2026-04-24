@@ -98,12 +98,12 @@ public class FPCharacterController:MonoBehaviour
             currentSpeed = backwardSpeed;
             footstepInterval = walkFootstepInterval;
         }
-        else if (input.Move.y > 0.1f && input.Sprint)
+        else if (input.Move.y > 0.1f && input.Sprint && !input.Crouch)
         {
             currentSpeed = sprintSpeed;
             footstepInterval = runFootstepInterval;
         }
-        else if ((input.Move.y > 0.1f && input.Crouch) || playerHide.isHiding)
+        else if ((input.Move.y > 0.1f && input.Crouch) || playerHide.isHiding && !input.Sprint)
         {
             currentSpeed = crouchSpeed;
             footstepInterval = crouchFootstepInterval;
