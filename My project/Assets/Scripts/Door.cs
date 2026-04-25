@@ -73,6 +73,12 @@ public class Door : MonoBehaviour, IInteractable
         openTimer = 0f;
     }
 
+    public void NPCOpen()
+    {
+        isOpen = true;
+        openTimer = 0f;
+    }
+
     public void ToggleLock()
     {
         locked = !locked;

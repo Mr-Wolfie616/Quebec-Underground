@@ -10,7 +10,7 @@ public class NPCOpenDoor : MonoBehaviour
         if (other.GetComponent<NPCStateManager>())
         {
             if (!NPCCanOpen) {return; }
-            door.ForceOpen();
+            door.NPCOpen();
         }
     }
 }
