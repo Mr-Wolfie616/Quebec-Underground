@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   playOnWake:
   - {fileID: 11400000, guid: 84f0280c95a6ebf469bb79e3d89f2f9f, type: 2}
+  maxAudioSources: 25

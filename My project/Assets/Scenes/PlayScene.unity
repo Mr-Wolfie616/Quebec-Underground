@@ -7513,7 +7513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3979371718686099798, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: m_Acceleration
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3979371718686099798, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: m_AngularSpeed
@@ -7581,7 +7581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6918155806304498620, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: roamSpeed
-      value: 6
+      value: 5.75
       objectReference: {fileID: 0}
     - target: {fileID: 6918155806304498620, guid: e88d6bd2a61b21b4faa4037f60f9b739, type: 3}
       propertyPath: finalHuntSpeed
@@ -64427,14 +64427,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5653753650830813780, guid: c08f2b6ca18df6d42ac5b6c94db2b725, type: 3}
-      propertyPath: playOnWake.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5653753650830813780, guid: c08f2b6ca18df6d42ac5b6c94db2b725, type: 3}
-      propertyPath: 'playOnWake.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 84f0280c95a6ebf469bb79e3d89f2f9f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -78209,6 +78201,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2aac82206cd52428c2df816e05891d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazePlayerMove
+--- !u!1 &1761249849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1761249851}
+  - component: {fileID: 1761249850}
+  m_Layer: 0
+  m_Name: Red Rat decal (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1761249850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761249849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 9bec91b5814a77f4184dfd09806c3ec9, type: 2}
+  m_DrawDistance: 30
+  m_FadeScale: 0.379
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 3, y: 2.75, z: 2}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
+--- !u!4 &1761249851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761249849}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -8.683998, y: 1.191461, z: 4.916437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1001 &1765778685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95918,3 +95970,4 @@ SceneRoots:
   - {fileID: 1768989703}
   - {fileID: 1581221232}
   - {fileID: 1893258039}
+  - {fileID: 1761249851}

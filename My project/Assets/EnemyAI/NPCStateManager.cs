@@ -35,7 +35,8 @@ public class NPCStateManager : FSM
 
     public float footstepInterval;
 
-    private PlayerHideScript phs;
+    public PlayerHideScript phs;
+    public FPCharacterController playerScript;
 
     private void OnEnable()
     {
@@ -63,6 +64,7 @@ public class NPCStateManager : FSM
         }
 
         phs = player.gameObject.GetComponent<PlayerHideScript>();
+        playerScript = player.gameObject.GetComponent<FPCharacterController>();
 
         if (agent == null) Debug.LogWarning("No NavMeshAgent found on NPCStateManager!");
         if (rb == null) Debug.LogWarning("No Rigidbody found on NPCStateManager!");

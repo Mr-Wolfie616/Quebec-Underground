@@ -91,7 +91,7 @@ public class FPCharacterController:MonoBehaviour
     void MovePlayer()
     {
         float currentSpeed;
-        bool isCrouching = input.Crouch;
+        isCrouching = input.Crouch;
 
         if (input.Move.y < 0)
         {

@@ -1,3 +1,5 @@
+using NUnit.Framework.Constraints;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +13,7 @@ public class RoamState : State
     private float checkInterval = 2f;
     private float detectionDist = 2f;
 
-    private float roamRadius = 6f;
+    private float roamRadius = 12f;
 
     public float huntChance = 0.9f; // 90%
     public float biasChance; // chance it tends to player
@@ -21,6 +23,13 @@ public class RoamState : State
 
     private float stuckCheckInterval = 1f;
     private float moveThreshold = 0.2f;
+
+    private bool headingAway = false;
+    private float headingAwayTimer = 5f;
+    private float haTime;
+
+    private Vector3 lastKnownPlayerPos;
+    private Vector3 playerVelocity;
 
     public RoamState(NPCStateManager npc)
     {
@@ -36,6 +45,7 @@ public class RoamState : State
 
         ChooseNewRoamPoint();
         playerCheckTimer = 0f;
+        haTime = 0f;
 
         if (npc.agent != null)
         {
@@ -45,6 +55,9 @@ public class RoamState : State
 
         lastPosition = npc.transform.position;
         stuckTimer = 0f;
+
+        lastKnownPlayerPos = player.position;
+        playerVelocity = Vector3.zero;
     }
 
     public override void Update()
@@ -52,6 +65,17 @@ public class RoamState : State
         if (npc.agent == null) return;
 
         playerCheckTimer += Time.deltaTime;
+
+        if (headingAway)
+        {
+            haTime -= Time.deltaTime;
+
+            if (haTime <= 0f)
+            {
+                Debug.Log("NPC stopped heading away from player");
+                headingAway = false;
+            }
+        }
 
         if (playerCheckTimer >= checkInterval)
         {
@@ -89,6 +113,13 @@ public class RoamState : State
         }
     }
 
+    private void BeginHeadingAwayTimer()
+    {
+        Debug.Log("NPC is heading away from player");
+        haTime = headingAwayTimer;
+        headingAway = true;
+    }
+
     private void ChooseNewRoamPoint()
     {
         int maxAttempts = 5;
@@ -99,28 +130,39 @@ public class RoamState : State
             Vector3 direction;
 
             float distToPlayer = Vector3.Distance(origin, player.position);
-            float biasChance = Mathf.Pow(Mathf.InverseLerp(2f, 30f, distToPlayer), 2); 
+            float biasChance = Mathf.Pow(Mathf.InverseLerp(10f, 40f, distToPlayer), 2); 
 
-            Debug.Log(biasChance.ToString());
+            //Debug.Log(biasChance.ToString());
 
             bool goTowardPlayer = player != null && Random.value < biasChance;
+            bool goAway = player != null && npc.phs.isHiding && npc.RaycastFindPlayer(3f, true) && Random.value < 0.75f;
 
-            Debug.Log(goTowardPlayer);
-
-            if (goTowardPlayer)
+            if (goAway)
             {
-                Vector3 toPlayer = (player.position - origin).normalized;
+                BeginHeadingAwayTimer();
+            }
 
-                Vector2 randomOffset = Random.insideUnitCircle * 2f;
-                Vector3 offset = new Vector3(randomOffset.x, 0, randomOffset.y);
+            Vector2 circle = Random.insideUnitCircle * roamRadius;
+            Vector3 randomDir = new Vector3(circle.x, 0, circle.y);
+            if (headingAway)
+            {
+                Vector3 awayFromPlayer = (origin - player.position).normalized;
+                float weight = 1.2f;
 
-                direction = (toPlayer * Random.Range(2f, roamRadius)) + offset;
+                direction = (randomDir + awayFromPlayer * weight).normalized * Random.Range(roamRadius * 0.5f, roamRadius);
             }
             else
             {
-                Vector2 circle = Random.insideUnitCircle * roamRadius;
-                direction = new Vector3(circle.x, 0, circle.y);
+                playerVelocity = (player.position - lastKnownPlayerPos) / Time.deltaTime;
+                lastKnownPlayerPos = player.position;
+
+                Vector3 predictedPos = player.position + playerVelocity * (biasChance * 1.5f);
+
+                Vector3 interceptDir = (predictedPos - origin).normalized;
+
+                direction = Vector3.Lerp(randomDir, interceptDir * roamRadius, biasChance).normalized * Random.Range(roamRadius * 0.5f, roamRadius);
             }
+
 
             Vector3 targetPos = origin + direction;
 

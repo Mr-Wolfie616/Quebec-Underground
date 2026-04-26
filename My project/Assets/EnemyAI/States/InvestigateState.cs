@@ -8,13 +8,8 @@ public class InvestigateState : State
     private NPCStateManager npc;
     private Transform player;
 
-    private float waitTime = 5f;
+    private float waitTime = 3f;
     private float waitTimer;
-
-    // always check
-    private float playerCheckTimer;
-    private float detectionDist = 2f;
-    private float checkInterval = 3f;
 
     private Vector3 previousTarget;
 
@@ -43,6 +38,8 @@ public class InvestigateState : State
     public void ClearAudioTarget()
     {
         npc.hasAudioTarget = false;
+        npc.currentAudioData = null;
+        npc.currentAudioTarget = Vector3.zero;
     }
 
     public override void Enter()
@@ -56,13 +53,18 @@ public class InvestigateState : State
             return;
         }
 
+        if (Random.value < 0.1f)
+        {
+            npc.TransitionToState(NPCState.Roam);
+            return;
+        }
+
         string soundID = currentAudioData.id;
 
         AudioManager.Instance.PlaySound("SFX_creature_alert", npc.transform.position, null);
 
         Debug.Log($"NPC AI Entered Investigate State | Target {soundID} at {npc.currentAudioTarget}");
 
-        playerCheckTimer = 0f;
         waitTimer = 0f;
 
         npc.agent.isStopped = false;
@@ -81,20 +83,11 @@ public class InvestigateState : State
 
         if (npc.SampleCorrectedPosition(newTarget, out NavMeshHit hit))
         {
-            if (hit.position != previousTarget)
+            if (Vector3.Distance(hit.position, previousTarget) > 0.25f)
             {
                 previousTarget = hit.position;
                 npc.agent.SetDestination(hit.position);
             }
-        }
-
-        playerCheckTimer += Time.deltaTime;
-
-        if (playerCheckTimer >= checkInterval)
-        {
-            playerCheckTimer = 0f;
-
-            if (TryHuntPlayer(detectionDist, 0.6f)) return;
         }
 
         bool reachedTarget = !npc.agent.pathPending && npc.agent.pathStatus == NavMeshPathStatus.PathComplete && npc.agent.remainingDistance <= npc.agent.stoppingDistance;
@@ -104,24 +97,40 @@ public class InvestigateState : State
 
     private void WaitAndSearch(bool reachedTarget)
     {
-        if (reachedTarget)
+        if (!reachedTarget) return;
+        Debug.Log($"NPC is investigating. Reached target: {reachedTarget}. Wait timer: {waitTimer}");
+        waitTimer += Time.deltaTime;
+
+        if (waitTimer >= waitTime)
         {
-            if (TryHuntPlayer(targetDetDist, 0.9f)) return;
+            Debug.Log("NPC finished investigating");
 
-            waitTimer += Time.deltaTime;
+            float chance;
 
-            if (waitTimer >= waitTime)
+            if (npc.phs.isHiding)
             {
-                Debug.Log("NPC finished investigating");
-
-                if (TryHuntPlayer(targetDetDist, 0.9f)) return;
-
-                ClearAudioTarget();
-
-                if (Random.value < 0.3f) npc.TransitionToState(NPCState.Idle);
-                else npc.TransitionToState(NPCState.Roam);
-                return;
+                chance = 0.05f;
             }
+            else if (npc.playerScript.isCrouching)
+            {
+                chance = 0.20f;
+            }
+            else
+            {
+                chance = 0.65f;
+            }
+
+            Debug.Log(chance + "| Crouching: " + npc.playerScript.isCrouching.ToString() + " | Hiding: " + npc.phs.isHiding.ToString());
+
+            if (TryHuntPlayer(targetDetDist, chance)) return;
+
+            ClearAudioTarget();
+
+            if (Random.value < 0.25f) npc.TransitionToState(NPCState.Idle);
+            else npc.TransitionToState(NPCState.Roam);
+
+            waitTimer = 0f;
+            return;
         }
     }
 
@@ -134,14 +143,14 @@ public class InvestigateState : State
         if (Random.value <= chance)
         {
             npc.TransitionToState(NPCState.Hunt);
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public override void Exit()
     {
         waitTimer = 0f;
-        playerCheckTimer = 0f;
     }
 }
