@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
+  m_Name: Door_Open
+  m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
+  id: SFX_Door_Open
+  audioType: 0
+  audioClips:
+  - {fileID: 8300000, guid: c77b840618779d0428c19c53a69db2fe, type: 3}
+  loopByDefault: 0
+  playRandom: 0
+  volumeMulti: 1
+  pitchMin: 1
+  pitchMax: 1
+  overrideMixer: {fileID: 0}
+  followEnemy: 0
+  alertEnemyOnPlay: 1
+  alertRadius: 5
+  alertPriority: 1
+  lastPlayed: -1
