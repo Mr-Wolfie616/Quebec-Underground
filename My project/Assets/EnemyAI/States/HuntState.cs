@@ -36,6 +36,7 @@ public class HuntState : State
         npc.agent.SetDestination(lastKnownPlayerPos);
 
         AudioManager.Instance.PlaySound("SFX_creature_alert", npc.transform.position, null);
+        AudioManager.Instance.PlaySound("SFX_Creature_Sudden_Noise", null, null);
     }
 
     public override void Update()
