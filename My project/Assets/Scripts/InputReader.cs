@@ -17,6 +17,8 @@ public class InputReader : MonoBehaviour
     public bool InteractPressed { get; private set; }
     public bool PressPressed { get; private set; }
 
+    public bool pausePressed {get; private set;}
+
     private PlayerInput playerInput;
 
     private InputAction moveAction;
@@ -25,6 +27,7 @@ public class InputReader : MonoBehaviour
     private InputAction crouchAction;
     private InputAction interactAction;
     private InputAction pressAction;
+    private InputAction pauseAction;
 
     void Awake()
     {
@@ -37,12 +40,14 @@ public class InputReader : MonoBehaviour
         crouchAction = gameplay.FindAction("Crouch", true);
         interactAction = gameplay.FindAction("Interact", true);
         pressAction = gameplay.FindAction("Press", true);
+        pauseAction = gameplay.FindAction("Pause", true);
     }
 
     private void LateUpdate()
     {
         InteractPressed = false;
         PressPressed = false;
+        pausePressed = false;
     }
     private void OnEnable()
     {
@@ -65,6 +70,9 @@ public class InputReader : MonoBehaviour
 
         pressAction.performed += OnPress;
         //pressAction.canceled += OnPress;
+
+        pauseAction.performed += OnPause;
+        //pauseAction.canceled += OnPause;
     }
 
     private void OnDisable()
@@ -86,6 +94,9 @@ public class InputReader : MonoBehaviour
 
         pressAction.performed -= OnPress;
         //pressAction.canceled -= OnPress;
+
+        pauseAction.performed -= OnPause;
+        //pauseAction.canceled -= OnPause;
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
@@ -116,6 +127,11 @@ public class InputReader : MonoBehaviour
     private void OnPress(InputAction.CallbackContext ctx)
     {
         PressPressed = true;
+    }
+
+    private void OnPause(InputAction.CallbackContext ctx)
+    {
+        pausePressed = true;
     }
 
     public void Clear()
