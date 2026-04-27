@@ -38,6 +38,7 @@ public class Door : MonoBehaviour, IInteractable
 
             if (openTimer >= openDuration)
             {
+                AudioManager.Instance.PlaySound("SFX_Door_Close", transform.position, null);
                 isOpen = false;
                 openTimer = 0f;
             }
@@ -61,20 +62,28 @@ public class Door : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (locked) return;
-       
-        isOpen = true;
-        openTimer = 0f;
+
+        Open();
     }
 
     public void ForceOpen()
     {
         locked = false;
-        isOpen = true;
-        openTimer = 0f;
+        Open();
     }
 
     public void NPCOpen()
     {
+        Open();
+    }
+
+    private void Open()
+    {
+        if (!isOpen)
+        {
+            AudioManager.Instance.PlaySound("SFX_Door_Open", transform.position, null);
+        }
+
         isOpen = true;
         openTimer = 0f;
     }

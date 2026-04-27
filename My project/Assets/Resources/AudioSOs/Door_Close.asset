@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
-  m_Name: Door_Open
+  m_Name: Door_Close
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  id: SFX_Door_Open
+  id: SFX_Door_Close
   audioType: 0
   audioClips:
   - {fileID: 8300000, guid: c77b840618779d0428c19c53a69db2fe, type: 3}
