@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f25833e3bb00f6c4c90eb637ed73cd63, type: 3}
-  m_Name: Generator_Sound
+  m_Name: Generator_Sound_Loop
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  id: SFX_Generator
+  id: SFX_Generator_Loop
   audioType: 0
   audioClips:
-  - {fileID: 8300000, guid: c4f99ae2a5f3c154d8a4956865eaeb2f, type: 3}
-  loopByDefault: 0
+  - {fileID: 8300000, guid: 96db7493a26ae0c4e870953c729c009b, type: 3}
+  loopByDefault: 1
   playRandom: 0
   volumeMulti: 0.1
   pitchMin: 1
   pitchMax: 1
   overrideMixer: {fileID: 0}
   followEnemy: 0
-  alertEnemyOnPlay: 1
+  alertEnemyOnPlay: 0
   alertRadius: 16
   alertPriority: 1
   lastPlayed: 0

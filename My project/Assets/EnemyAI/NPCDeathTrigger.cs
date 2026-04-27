@@ -8,6 +8,7 @@ public class NPCDeathTrigger : MonoBehaviour
     {
         if (other.TryGetComponent<FPCharacterController>(out var controller))
         {
+            AudioManager.Instance.PlaySound("SFX_Creature_Sudden_Noise", null, null);
             SceneManager.LoadScene("YouDiedScene"); 
         }
     }

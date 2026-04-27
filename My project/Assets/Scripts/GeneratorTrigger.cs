@@ -9,6 +9,7 @@ public class GeneratorTrigger : MonoBehaviour
         if (done) { return; }
         done = true;
         AudioManager.Instance.PlaySound("SFX_Generator", transform.position, null);
+        AudioManager.Instance.PlaySound("SFX_Generator_Loop", transform.position, null);
         PuzzleManager.PuzzleManagerIncrease?.Invoke(generatorID, transform.position);
     }
 }
