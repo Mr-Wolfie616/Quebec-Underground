@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HideTrigger
   - OpenDoor
+  - SaferoomTrigger
   layers:
   - Default
   - TransparentFX

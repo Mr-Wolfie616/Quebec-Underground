@@ -114,7 +114,7 @@ public class FPCharacterController:MonoBehaviour
             footstepInterval = walkFootstepInterval;
         }
 
-        if (input.Crouch || playerHide.isHiding)
+        if (input.Crouch || playerHide.crouchHide)
         {
             transform.localScale = crouchScale;
         }
