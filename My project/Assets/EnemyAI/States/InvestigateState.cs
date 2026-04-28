@@ -19,6 +19,9 @@ public class InvestigateState : State
 
     private float targetDetDist = 5f;
 
+    private float stuckTimer = 0f;
+    private float maxStuckTime = 5f;
+
     public InvestigateState(NPCStateManager npc)
     {
         this.npc = npc;
@@ -45,6 +48,7 @@ public class InvestigateState : State
     public override void Enter()
     {
         currentAudioData = GetAudioData();
+        stuckTimer = 0f;
 
         if (currentAudioData == null)
         {
@@ -91,6 +95,25 @@ public class InvestigateState : State
         }
 
         bool reachedTarget = !npc.agent.pathPending && npc.agent.pathStatus == NavMeshPathStatus.PathComplete && npc.agent.remainingDistance <= npc.agent.stoppingDistance;
+        bool stuck = !reachedTarget && !npc.agent.pathPending && npc.agent.velocity.magnitude < 0.1f;
+
+        if (stuck)
+        {
+            stuckTimer += Time.deltaTime;
+
+            if (stuckTimer >= maxStuckTime)
+            {
+                Debug.Log("NPC could not reach investigate target. Returning to roam.");
+                ClearAudioTarget();
+                npc.TransitionToState(NPCState.Roam);
+                return;
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+        }
+
 
         WaitAndSearch(reachedTarget);
     }
