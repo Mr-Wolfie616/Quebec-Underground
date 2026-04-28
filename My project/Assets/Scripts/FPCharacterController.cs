@@ -11,20 +11,20 @@ using UnityEngine.Timeline;
 public class FPCharacterController:MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float sprintSpeed = 10f;
-    [SerializeField] private float backwardSpeed = 2.5f;
+    [SerializeField] private float moveSpeed = 1.5f;
+    [SerializeField] private float sprintSpeed = 2.5f;
+    [SerializeField] private float backwardSpeed = 1f;
     private float speedDebug = 0f;
 
     [Header("Camera")]
-    [SerializeField] private float lookSensitivity = 2f;
+    [SerializeField] private float lookSensitivity = 5f;
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private float xRotation;
 
     [Header("Crouch")]
-    [SerializeField] private float crouchSpeed = 2f;
+    [SerializeField] private float crouchSpeed = 1f;
     [SerializeField] private Transform player;
-    [SerializeField] private Vector3 crouchScale = new Vector3 (0.5f, 0.25f, 0.5f);
+    [SerializeField] private Vector3 crouchScale = new Vector3 (0.3f, 0.25f, 0.3f);
     private Vector3 standardScale = new Vector3 (0.5f, 0.5f, 0.5f);
     public bool isCrouching = false;
 
