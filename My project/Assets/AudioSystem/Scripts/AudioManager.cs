@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     Dictionary<string, AudioDataSO> audioLookup = new Dictionary<string, AudioDataSO>();
 
-    public static Action<Vector3, AudioDataSO> AlertEnemyEvent;
+    public static Action<Vector3, AudioDataSO, bool> AlertEnemyEvent;
 
     private AudioSource oneShotSource;
     private Transform enemyTrans;
@@ -165,7 +165,7 @@ public class AudioManager : MonoBehaviour
 
         if (pos != null && data.alertEnemyOnPlay)
         {
-            AlertEnemyEvent?.Invoke(pos.Value, data);
+            AlertEnemyEvent?.Invoke(pos.Value, data, data.alertWhenHunting);
         }
     }
 }

@@ -25,7 +25,8 @@ MonoBehaviour:
   pitchMax: 1
   overrideMixer: {fileID: 0}
   followEnemy: 0
-  alertEnemyOnPlay: 0
-  alertRadius: 1
-  alertPriority: 0
+  alertEnemyOnPlay: 1
+  alertRadius: 2
+  alertWhenHunting: 0
+  alertPriority: 1
   lastPlayed: 1

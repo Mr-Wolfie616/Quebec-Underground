@@ -34,6 +34,7 @@ public class AudioDataSO : ScriptableObject
     public bool followEnemy = false;
     public bool alertEnemyOnPlay = true;
     public float alertRadius = 16f;
+    public bool alertWhenHunting = false;
     [Range(0, 10)]
     public int alertPriority = 1;
 

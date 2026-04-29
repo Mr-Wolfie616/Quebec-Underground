@@ -11,11 +11,11 @@ public class RoamState : State
     private float playerCheckTimer;
 
     private float checkInterval = 2f;
-    private float detectionDist = 2f;
+    private float detectionDist = 4f;
 
     private float roamRadius = 12f;
 
-    public float huntChance = 0.9f; // 90%
+    public float huntChance = 0.8f; // 90%
     public float biasChance; // chance it tends to player
 
     private Vector3 lastPosition;

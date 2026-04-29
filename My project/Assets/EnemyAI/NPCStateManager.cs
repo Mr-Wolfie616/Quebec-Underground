@@ -205,8 +205,15 @@ public class NPCStateManager : FSM
         return NavMesh.SamplePosition(floorCorrected, out hit, 1f, NavMesh.AllAreas);
     }
 
-    public void HearAudio(Vector3 pos, AudioDataSO data)
+    public void HearAudio(Vector3 pos, AudioDataSO data, bool alertWhenHunting)
     {
+        if (!alertWhenHunting && IsInState(NPCState.Hunt))
+        {
+            Debug.Log("is hunting, no alert"); 
+            return;
+        }
+
+
         float newDist = Vector3.Distance(transform.position, pos);
 
         if (newDist > data.alertRadius) return;

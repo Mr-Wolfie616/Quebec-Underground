@@ -25,5 +25,6 @@ MonoBehaviour:
   followEnemy: 0
   alertEnemyOnPlay: 1
   alertRadius: 500
+  alertWhenHunting: 1
   alertPriority: 10
   lastPlayed: -1
