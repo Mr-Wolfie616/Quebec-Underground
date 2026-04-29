@@ -21,7 +21,7 @@ public class RoamState : State
     private Vector3 lastPosition;
     private float stuckTimer;
 
-    private float stuckCheckInterval = 1f;
+    private float stuckCheckInterval = 5f;
     private float moveThreshold = 0.2f;
 
     private bool headingAway = false;
@@ -91,7 +91,7 @@ public class RoamState : State
             }
         }
 
-        if (!npc.agent.pathPending && npc.agent.hasPath && npc.agent.remainingDistance < 0.5f)
+        if (!npc.agent.pathPending && npc.agent.hasPath && npc.agent.remainingDistance < 0.25f)
         {
             ChooseNewRoamPoint();
         }
@@ -102,11 +102,13 @@ public class RoamState : State
         {
             float movedDistance = Vector3.Distance(npc.transform.position, lastPosition);
 
-            if (movedDistance < moveThreshold && npc.agent.hasPath && npc.agent.remainingDistance > npc.agent.stoppingDistance)
+            if (movedDistance < moveThreshold && npc.agent.hasPath)
             {
-                //Debug.Log("NPC stuck");
+                Debug.Log("NPC stuck");
                 ChooseNewRoamPoint();
             }
+
+            Debug.Log($"NPC moved {movedDistance} units in the last {stuckCheckInterval} seconds");
 
             lastPosition = npc.transform.position;
             stuckTimer = 0f;
