@@ -814,6 +814,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &11702097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11702098}
+  - component: {fileID: 11702099}
+  m_Layer: 0
+  m_Name: 1636 decal (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11702098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11702097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 22.429, y: 1.368, z: 25.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1186243277}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &11702099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11702097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 976c9bdf350ab8e43b30360d523b2c9e, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 2.9, y: 2.9, z: 2}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
 --- !u!1 &12078246 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 97234459cb1dd1745b3ed66ed4b04310, type: 3}
@@ -10964,6 +11024,9 @@ Transform:
   - {fileID: 942553704}
   - {fileID: 989484745}
   - {fileID: 1867897437}
+  - {fileID: 328834618}
+  - {fileID: 2040432499}
+  - {fileID: 2093596103}
   - {fileID: 183614868}
   - {fileID: 129099721}
   - {fileID: 742123756}
@@ -13304,6 +13367,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8312183713945040976, guid: 1a8acf432595c8f4c85731deb2408c9e, type: 3}
   m_PrefabInstance: {fileID: 1388179404}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &328834617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328834618}
+  - component: {fileID: 328834619}
+  m_Layer: 0
+  m_Name: Red Rat decal (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &328834618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328834617}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0075322827, y: -0.00033415694, z: -0.04431844, w: 0.99898905}
+  m_LocalPosition: {x: -47.39, y: -3.3, z: 100.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 256982078}
+  m_LocalEulerAnglesHint: {x: -0.864, y: 0, z: -5.08}
+--- !u!114 &328834619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328834617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 25c63aff84a3f714299648eebe239670, type: 2}
+  m_DrawDistance: 30
+  m_FadeScale: 0.379
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 2.5, y: 3.25, z: 2}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
 --- !u!1 &330832555
 GameObject:
   m_ObjectHideFlags: 0
@@ -52824,6 +52947,7 @@ Transform:
   - {fileID: 1746721230}
   - {fileID: 725911943}
   - {fileID: 1752671085}
+  - {fileID: 11702098}
   - {fileID: 143224633}
   - {fileID: 960229559}
   - {fileID: 256982078}
@@ -92219,6 +92343,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 25baa9339faee0943ba70c99558a9f50, type: 3}
   m_PrefabInstance: {fileID: 2024145828}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2040432498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2040432499}
+  - component: {fileID: 2040432500}
+  m_Layer: 0
+  m_Name: Red Rat decal (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2040432499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040432498}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0075322827, y: -0.00033415694, z: -0.04431844, w: 0.99898905}
+  m_LocalPosition: {x: -47.3, y: -3.19, z: 100.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 256982078}
+  m_LocalEulerAnglesHint: {x: -0.864, y: 0, z: -5.08}
+--- !u!114 &2040432500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040432498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: c5dc673b31a7ae949b2d96ea78450f86, type: 2}
+  m_DrawDistance: 30
+  m_FadeScale: 0.379
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 2.5, y: 3.25, z: 2}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
 --- !u!1001 &2042870458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94498,6 +94682,66 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2136045692}
   m_SourcePrefab: {fileID: 100100000, guid: 4fca7fb6100809247bb3bc008fa6362d, type: 3}
+--- !u!1 &2093596102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093596103}
+  - component: {fileID: 2093596104}
+  m_Layer: 0
+  m_Name: Red Rat decal (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093596103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093596102}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0077995593, y: 0.99994123, z: 0.0075394623, w: 0.00005880792}
+  m_LocalPosition: {x: -35.234, y: 1.072, z: 93.205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 256982078}
+  m_LocalEulerAnglesHint: {x: -0.864, y: 180, z: -0.894}
+--- !u!114 &2093596104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093596102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: d6798349ef3379840ac5b24499fbc3a2, type: 2}
+  m_DrawDistance: 30
+  m_FadeScale: 0.379
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 2, y: 2.3, z: 2}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
 --- !u!1 &2093673198
 GameObject:
   m_ObjectHideFlags: 0
