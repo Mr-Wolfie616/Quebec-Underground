@@ -1,2 +1,2 @@
 # Québec Underground
-Underground horror game is a stealth game based in an underground subway system. You task through out the game is to escape this place, but be careful IT can hear you. 
+Quebec Underground is a fast-paced horror prototype focused on survival by awareness, movement and decision-making rather than combat. The player explores an abandoned train station while being hunted by an unkillable creature that moves faster than the player
